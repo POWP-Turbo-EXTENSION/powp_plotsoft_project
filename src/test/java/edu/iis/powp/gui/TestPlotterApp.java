@@ -12,6 +12,7 @@ import edu.iis.powp.app.Application;
 import edu.iis.powp.appext.FeaturesManager;
 import edu.iis.powp.command.gui.CommandManagerWindow;
 import edu.iis.powp.command.gui.CommandManagerWindowCommandChangeObserver;
+import edu.iis.powp.command.gui.ComplexCommandEditorWindow;
 import edu.iis.powp.events.SelectLoadSecretCommandOptionListener;
 import edu.iis.powp.events.SelectRunCurrentCommandOptionListener;
 import edu.iis.powp.events.SelectTestFigure2OptionListener;
@@ -73,7 +74,8 @@ public class TestPlotterApp {
 
 		CommandManagerWindow commandManager = new CommandManagerWindow(FeaturesManager.getPlotterCommandManager());
 		application.addWindowComponent("Command Manager", commandManager);
-		application.addWindowComponent("Edit complex command", null);
+		ComplexCommandEditorWindow commandEditor = new ComplexCommandEditorWindow(FeaturesManager.getPlotterCommandManager());
+		application.addJFrameWindow("Edit complex command", commandEditor);
 		CommandManagerWindowCommandChangeObserver windowObserver = new CommandManagerWindowCommandChangeObserver(
 				commandManager);
 		FeaturesManager.getPlotterCommandManager().getChangePublisher().addSubscriber(windowObserver);
