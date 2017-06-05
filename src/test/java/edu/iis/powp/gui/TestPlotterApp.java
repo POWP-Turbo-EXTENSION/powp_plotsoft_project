@@ -73,7 +73,7 @@ public class TestPlotterApp {
 
 		CommandManagerWindow commandManager = new CommandManagerWindow(FeaturesManager.getPlotterCommandManager());
 		application.addWindowComponent("Command Manager", commandManager);
-
+		application.addWindowComponent("Edit complex command", null);
 		CommandManagerWindowCommandChangeObserver windowObserver = new CommandManagerWindowCommandChangeObserver(
 				commandManager);
 		FeaturesManager.getPlotterCommandManager().getChangePublisher().addSubscriber(windowObserver);
