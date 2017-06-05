@@ -13,8 +13,6 @@ import edu.iis.powp.appext.FeaturesManager;
 import edu.iis.powp.command.FigureFactory;
 import edu.iis.powp.command.gui.CommandManagerWindow;
 import edu.iis.powp.command.gui.CommandManagerWindowCommandChangeObserver;
-import edu.iis.powp.commandeditor.CommandEditorWIndow;
-import edu.iis.powp.commandeditor.gui.CommandEditorWindowObserver;
 import edu.iis.powp.events.SelectLoadSecretCommandOptionListener;
 import edu.iis.powp.events.SelectRunCurrentCommandOptionListener;
 import edu.iis.powp.events.SelectTestFigure2OptionListener;
@@ -35,7 +33,8 @@ public class TestPlotterApp {
 	private static void setupPresetTests(Application application) {
 		SelectTestFigureOptionListener selectTestFigureOptionListener = new SelectTestFigureOptionListener();
 		SelectTestFigure2OptionListener selectTestFigure2OptionListener = new SelectTestFigure2OptionListener();
-		SelectTestFigureOptionCommandListener selectTestFigureOptionCommandListener = new SelectTestFigureOptionCommandListener(FigureFactory.getSquare(10, 10, 40), application);
+		SelectTestFigureOptionCommandListener selectTestFigureOptionCommandListener = new SelectTestFigureOptionCommandListener(
+				FigureFactory.getSquare(10, 10, 40), application);
 		application.addTest("Figure Joe 1", selectTestFigureOptionListener);
 		application.addTest("Figure KWADRAT", selectTestFigureOptionCommandListener);
 		application.addTest("Figure Joe 2", selectTestFigure2OptionListener);
@@ -78,16 +77,13 @@ public class TestPlotterApp {
 
 		CommandManagerWindow commandManager = new CommandManagerWindow(FeaturesManager.getPlotterCommandManager());
 		application.addWindowComponent("Command Manager", commandManager);
+		application.addWindowComponent("Command Editor", null);
 
-		CommandEditorWIndow commandEditor = new CommandEditorWIndow(FeaturesManager.getPlotterCommandManager());
-        application.addWindowComponent("Command Editor", commandEditor);
-		
 		CommandManagerWindowCommandChangeObserver windowObserver = new CommandManagerWindowCommandChangeObserver(
 				commandManager);
-	      CommandEditorWindowObserver editorWindowObserver = new CommandEditorWindowObserver(
-	              commandEditor);
+
 		FeaturesManager.getPlotterCommandManager().getChangePublisher().addSubscriber(windowObserver);
-		FeaturesManager.getPlotterCommandManager().getChangePublisher().addSubscriber(editorWindowObserver);
+
 	}
 
 	/**
