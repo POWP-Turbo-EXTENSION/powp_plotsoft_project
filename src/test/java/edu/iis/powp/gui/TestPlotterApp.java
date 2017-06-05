@@ -10,6 +10,7 @@ import edu.iis.client.plottermagic.IPlotter;
 import edu.iis.powp.adapter.LineAdapterPlotterDriver;
 import edu.iis.powp.app.Application;
 import edu.iis.powp.appext.FeaturesManager;
+import edu.iis.powp.command.FigureFactory;
 import edu.iis.powp.command.gui.CommandManagerWindow;
 import edu.iis.powp.command.gui.CommandManagerWindowCommandChangeObserver;
 import edu.iis.powp.commandeditor.CommandEditorWIndow;
@@ -17,6 +18,7 @@ import edu.iis.powp.commandeditor.gui.CommandEditorWindowObserver;
 import edu.iis.powp.events.SelectLoadSecretCommandOptionListener;
 import edu.iis.powp.events.SelectRunCurrentCommandOptionListener;
 import edu.iis.powp.events.SelectTestFigure2OptionListener;
+import edu.iis.powp.events.predefine.SelectTestFigureOptionCommandListener;
 import edu.iis.powp.events.predefine.SelectTestFigureOptionListener;
 import edu.kis.powp.drawer.panel.DrawPanelController;
 import edu.kis.powp.drawer.shape.LineFactory;
@@ -33,8 +35,9 @@ public class TestPlotterApp {
 	private static void setupPresetTests(Application application) {
 		SelectTestFigureOptionListener selectTestFigureOptionListener = new SelectTestFigureOptionListener();
 		SelectTestFigure2OptionListener selectTestFigure2OptionListener = new SelectTestFigure2OptionListener();
-		SelectTestFigureOptionCommandListener selectTestFigureOptionCommandListener = new SelectTestFigureOptionCommandListener(FigureFactory.getSquare(10, 10, 40));
+		SelectTestFigureOptionCommandListener selectTestFigureOptionCommandListener = new SelectTestFigureOptionCommandListener(FigureFactory.getSquare(10, 10, 40), application);
 		application.addTest("Figure Joe 1", selectTestFigureOptionListener);
+		application.addTest("Figure KWADRAT", selectTestFigureOptionCommandListener);
 		application.addTest("Figure Joe 2", selectTestFigure2OptionListener);
 	}
 
