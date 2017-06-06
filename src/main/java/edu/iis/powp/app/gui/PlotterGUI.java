@@ -1,7 +1,9 @@
 package edu.iis.powp.app.gui;
 
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
@@ -62,6 +64,8 @@ public class PlotterGUI extends JFrame {
 	 * Free panel.
 	 */
 	private JPanel freePanel = null;
+	private JScrollPane freeScrollPanelRight = null;
+	private JPanel freePanelRight = null;
 
 	/**
 	 * Logger text area.
@@ -123,7 +127,7 @@ public class PlotterGUI extends JFrame {
 		 * Frame window with grid bag layout.
 		 */
 		this.setTitle("Plotter App");
-		this.setBounds(50, 100, 840, 520);
+		this.setBounds(50, 100, 1040, 520);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 
@@ -191,6 +195,16 @@ public class PlotterGUI extends JFrame {
 		freePanel = new JPanel();
 		commandListScrollPane.setViewportView(freePanel);
 
+		freePanelRight = new JPanel();
+		freeScrollPanelRight = new JScrollPane(freePanelRight);
+		Dimension sad = new Dimension(200, 540);
+		freePanelRight.setMinimumSize(sad);
+		GridBagConstraints gbcRightScrollPane = new GridBagConstraints();
+		gbcCommandListScrollPane.fill = GridBagConstraints.BOTH;
+//		gbcCommandListScrollPane.gridheight = 2;
+		gbcCommandListScrollPane.gridx = 2;
+		gbcCommandListScrollPane.gridy = 0;
+		this.getContentPane().add(freeScrollPanelRight, gbcRightScrollPane);
 		/*
 		 * Logger scroll pane.
 		 */
@@ -214,7 +228,9 @@ public class PlotterGUI extends JFrame {
 	public JPanel getFreePanel() {
 		return freePanel;
 	}
-
+	public JPanel getFreeRightPanel() {
+		return freePanelRight;
+	}
 	public void addComponentMenu(Class<?> compClass, String name) {
 		addComponentMenu(compClass, name, -1);
 	}

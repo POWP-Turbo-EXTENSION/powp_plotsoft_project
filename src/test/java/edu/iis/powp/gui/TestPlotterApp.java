@@ -1,9 +1,13 @@
 package edu.iis.powp.gui;
 
+import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javax.swing.JButton;
+import javax.swing.JPanel;
 
 import edu.iis.client.plottermagic.ClientPlotter;
 import edu.iis.client.plottermagic.IPlotter;
@@ -86,6 +90,14 @@ public class TestPlotterApp {
 
 	}
 
+	private static void setupEditor(Application application) {
+		JPanel test= new JPanel();
+		test.setLayout(new BorderLayout());
+		application.getFreeRightPanel().setLayout(new BorderLayout());
+		application.getFreeRightPanel().add(test, BorderLayout.CENTER);
+		test.add(new JButton("DUPA"), BorderLayout.SOUTH);
+	}
+	
 	/**
 	 * Setup menu for adjusting logging settings.
 	 * 
@@ -93,7 +105,8 @@ public class TestPlotterApp {
 	 *            Application context.
 	 */
 	private static void setupLogger(Application application) {
-
+		
+		
 		application.addComponentMenu(Logger.class, "Logger", 0);
 		application.addComponentMenuElement(Logger.class, "Clear log",
 				(ActionEvent e) -> application.flushLoggerOutput());
@@ -120,6 +133,7 @@ public class TestPlotterApp {
 				setupCommandTests(app);
 				setupLogger(app);
 				setupWindows(app);
+				setupEditor(app);
 
 				app.setVisibility(true);
 			}

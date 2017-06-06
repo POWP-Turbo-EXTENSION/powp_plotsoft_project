@@ -37,7 +37,9 @@ public class Application {
 	public JPanel getFreePanel() {
 		return gui.getFreePanel();
 	}
-
+	public JPanel getFreeRightPanel() {
+		return gui.getFreeRightPanel();
+	}
 	/**
 	 * Add driver to context, create button in driver menu.
 	 * 
