@@ -201,7 +201,7 @@ public class PlotterGUI extends JFrame {
 		freePanelRight.setMinimumSize(sad);
 		GridBagConstraints gbcRightScrollPane = new GridBagConstraints();
 		gbcCommandListScrollPane.fill = GridBagConstraints.BOTH;
-//		gbcCommandListScrollPane.gridheight = 2;
+		gbcCommandListScrollPane.gridheight = 2;
 		gbcCommandListScrollPane.gridx = 2;
 		gbcCommandListScrollPane.gridy = 0;
 		this.getContentPane().add(freeScrollPanelRight, gbcRightScrollPane);

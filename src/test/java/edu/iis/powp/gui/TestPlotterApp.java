@@ -15,6 +15,7 @@ import edu.iis.powp.adapter.LineAdapterPlotterDriver;
 import edu.iis.powp.app.Application;
 import edu.iis.powp.appext.FeaturesManager;
 import edu.iis.powp.command.FigureFactory;
+import edu.iis.powp.command.editor.CommandTree;
 import edu.iis.powp.command.gui.CommandManagerWindow;
 import edu.iis.powp.command.gui.CommandManagerWindowCommandChangeObserver;
 import edu.iis.powp.events.SelectLoadSecretCommandOptionListener;
@@ -94,8 +95,9 @@ public class TestPlotterApp {
 		JPanel test= new JPanel();
 		test.setLayout(new BorderLayout());
 		application.getFreeRightPanel().setLayout(new BorderLayout());
-		application.getFreeRightPanel().add(test, BorderLayout.CENTER);
-		test.add(new JButton("DUPA"), BorderLayout.SOUTH);
+		CommandTree ct = new CommandTree(application);
+		ct.setTreeDemo();
+//		test.add(new JButton("DUPA"), BorderLayout.SOUTH);
 	}
 	
 	/**

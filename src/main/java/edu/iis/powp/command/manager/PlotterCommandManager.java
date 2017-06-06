@@ -11,73 +11,85 @@ import edu.iis.powp.observer.Publisher;
 /**
  * Driver Manager.
  */
-public class PlotterCommandManager
-{
-    private IPlotterCommand currentCommand = null;
-    
-    private Publisher changePublisher = new Publisher(); 
+public class PlotterCommandManager {
+	private IPlotterCommand currentCommand = null;
+
+	private Publisher changePublisher = new Publisher();
 
 	/**
-     * Set current command.
-     * 
-     * @param commandList Set the command as current.
-     */
-    public synchronized void setCurrentCommand(IPlotterCommand commandList)
-    {
-    	this.currentCommand = commandList;
-    	changePublisher.notifyObservers();
-    }
-    
-    /**
-     * Set current command.
-     * 
-     * @param commandList list of commands representing a compound command.
-     * @param name name of the command.
-     */
-    public synchronized void setCurrentCommand(List<IPlotterCommand> commandList, String name)
-    {
-    	setCurrentCommand(new ICompoundCommand() {
-			
-    		List<IPlotterCommand> plotterCommands = commandList;
-    		
+	 * Set current command.
+	 * 
+	 * @param commandList
+	 *            Set the command as current.
+	 */
+	public synchronized void setCurrentCommand(IPlotterCommand commandList) {
+		this.currentCommand = commandList;
+		changePublisher.notifyObservers();
+
+	}
+
+	/**
+	 * Set current command.
+	 * 
+	 * @param commandList
+	 *            list of commands representing a compound command.
+	 * @param name
+	 *            name of the command.
+	 */
+	public synchronized void setCurrentCommand(List<IPlotterCommand> commandList, String name) {
+		setCurrentCommand(new ICompoundCommand() {
+
+			List<IPlotterCommand> plotterCommands = commandList;
+
 			@Override
 			public void execute(IPlotter plotter) {
-				plotterCommands.forEach((c) -> c.execute(plotter));
+				plotterCommands.forEach((c) -> {
+					c.execute(plotter);
+					for(Class<?> s : c.getClass().getInterfaces()){
+						if(s.equals(ICompoundCommand.class)){
+								ICompoundCommand t = (ICompoundCommand) c;
+								for (Iterator iterator = t.iterator(); iterator.hasNext();) {
+									IPlotterCommand iPlotterCommand = (IPlotterCommand) iterator.next();
+									System.out.println("DUPA:"+iPlotterCommand.getClass().getSimpleName());
+								}
+							System.out.println(s.getSimpleName());
+						}
+					}
+				});
 			}
-			
+
 			@Override
 			public Iterator<IPlotterCommand> iterator() {
 				return plotterCommands.iterator();
 			}
-			
+
 			@Override
 			public String toString() {
 				return name;
 			}
 		});
 
-    }
-    
-    /**
-     * Return current command.
-     * 
-     * @return Current command.
-     */
-    public synchronized IPlotterCommand getCurrentCommand()
-    {
-        return currentCommand;
-    }
-    
-    public synchronized void clearCurrentCommand()
-    {
-        currentCommand = null;
-    }
-    
-    public synchronized String getCurrentCommandString() {
-		if(getCurrentCommand() == null) {
+	}
+
+	/**
+	 * Return current command.
+	 * 
+	 * @return Current command.
+	 */
+	public synchronized IPlotterCommand getCurrentCommand() {
+		return currentCommand;
+	}
+
+	public synchronized void clearCurrentCommand() {
+		currentCommand = null;
+	}
+
+	public synchronized String getCurrentCommandString() {
+		if (getCurrentCommand() == null) {
 			return "No command loaded";
-		} else return getCurrentCommand().toString();
-    }
+		} else
+			return getCurrentCommand().toString();
+	}
 
 	public Publisher getChangePublisher() {
 		return changePublisher;
