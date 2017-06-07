@@ -7,7 +7,7 @@ import edu.iis.client.plottermagic.IPlotter;
  */
 public class SetPositionCommand implements IPlotterCommand {
 
-	private int posX, posY;
+	private int posX, posY, posZ;
 	
 	public SetPositionCommand(int posX, int posY) {
 		super();
