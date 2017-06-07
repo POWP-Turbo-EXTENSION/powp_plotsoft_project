@@ -17,7 +17,7 @@ import edu.iis.powp.command.IPlotterCommand;
 import edu.iis.powp.command.SetPositionCommand;
 import edu.iis.powp.observer.Subscriber;
 
-public class CommandTree implements Subscriber{
+public class CommandTree implements ICommandTree{
 	private Application app;
 	private JPanel treePanel;
 	private JTree tree;
@@ -28,7 +28,23 @@ public class CommandTree implements Subscriber{
 		treePanel = new JPanel();
 	}
 	
-	private void buildTree(IPlotterCommand commandToBuild) {
+	@Override
+	public void update() {
+		currentCommand = FeaturesManager.getPlotterCommandManager().getCurrentCommand();
+		treePanel.removeAll();
+		BuildTree(currentCommand);
+	}
+	
+	@Override
+	public void EraseTree() {
+		tree.removeAll();
+		treePanel.removeAll();
+		treePanel.revalidate();
+		treePanel.repaint();
+	}
+	
+	@Override
+	public void BuildTree(IPlotterCommand commandToBuild) {
 		DefaultMutableTreeNode top = new DefaultMutableTreeNode(commandToBuild.getClass().getSimpleName());
 		if(ICompoundCommand.class.isInstance(commandToBuild)) {
 			createNodes(top, commandToBuild);
@@ -36,6 +52,8 @@ public class CommandTree implements Subscriber{
 		tree = new JTree(top);
 		treePanel.add(tree);
 	    this.app.getFreeRightPanel().add(treePanel, BorderLayout.CENTER);
+	    treePanel.revalidate();
+		treePanel.repaint();
 	}
 	
 	private void createNodes(DefaultMutableTreeNode top, IPlotterCommand nodeCommand){
@@ -50,16 +68,7 @@ public class CommandTree implements Subscriber{
 		}
 	}
 
-	@Override
-	public void update() {
-		currentCommand = FeaturesManager.getPlotterCommandManager().getCurrentCommand();
-		treePanel.removeAll();
-		buildTree(currentCommand);
-		treePanel.revalidate();
-		treePanel.repaint();
-	}
-	
-	public ICompoundCommand treeTestCommand() {
+	private ICompoundCommand treeTestCommand() { // metoda testowa do drzewa z głębiami różnymi, do użycia podstawić jako parametr funkcji 'BuildTree()' w update
 		ComplexCommand complexCommand = new ComplexCommand();
 			ComplexCommand complexCommand2 = new ComplexCommand();
 				SetPositionCommand spc1 = new SetPositionCommand(10,10);

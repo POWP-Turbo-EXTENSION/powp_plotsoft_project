@@ -8,6 +8,7 @@ import edu.iis.powp.app.Application;
 import edu.iis.powp.app.DriverManager;
 import edu.iis.powp.command.editor.CommandEditorMenu;
 import edu.iis.powp.command.editor.CommandTree;
+import edu.iis.powp.command.editor.ICommandTree;
 import edu.iis.powp.command.manager.LoggerCommandChangeObserver;
 import edu.iis.powp.command.manager.PlotterCommandManager;
 import edu.iis.powp.events.predefine.SelectClearPanelOptionListener;
@@ -20,7 +21,7 @@ public class FeaturesManager {
 	private static PlotterCommandManager commandManager;
 	private static DriverManager driverManager;
 	private static DrawPanelController drawerController;
-	private static CommandTree commandTree;
+	private static ICommandTree commandTree;
 	/**
 	 * Startup configuration.
 	 */
@@ -99,7 +100,7 @@ public class FeaturesManager {
 		return commandManager;
 	}
 	
-	public static CommandTree getCommandTree() {
+	public static ICommandTree getCommandTree() {
 		return commandTree;
 	}
 }
