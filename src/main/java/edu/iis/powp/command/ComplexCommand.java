@@ -61,6 +61,18 @@ public class ComplexCommand implements ICompoundCommand, IPlotterCommand, Serial
           i.printStackTrace();
        }
 	}
+	public void Save(){
+	      try {
+	          FileOutputStream fileOut = new FileOutputStream("./src/commands/" + name + ".ser");
+	          ObjectOutputStream out = new ObjectOutputStream(fileOut);
+	          out.writeObject(commands);
+	          out.close();
+	          fileOut.close();
+	          System.out.printf("Serialized command at " + "/commands/" + name + ".ser");
+	       }catch(IOException i) {
+	          i.printStackTrace();
+	       }
+		}
 	public void Load(String name){
 	      try {
 	    	  this.name = name;
