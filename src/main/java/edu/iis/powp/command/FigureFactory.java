@@ -12,6 +12,7 @@ public class FigureFactory {
         command.addCommand(new DrawToCommand(startX, startY+size));
         command.addCommand(new SetPositionCommand(startX, startY+size));
         command.addCommand(new DrawToCommand(startX, startY));
+        command.Save("kwadrat");
         return command;
     }
 }

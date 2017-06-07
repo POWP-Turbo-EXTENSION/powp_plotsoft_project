@@ -19,5 +19,10 @@ public class DrawToCommand implements IPlotterCommand {
 	public void execute(IPlotter plotter) {
 		plotter.drawTo(posX, posY);
 	}
-
+	public int getX(){
+		return this.posX;
+	}
+	public int getY(){
+		return this.posY;
+	}
 }
