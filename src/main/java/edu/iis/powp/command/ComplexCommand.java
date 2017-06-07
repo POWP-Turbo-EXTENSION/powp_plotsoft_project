@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.io.StreamCorruptedException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -107,10 +108,12 @@ public class ComplexCommand implements ICompoundCommand, IPlotterCommand, Serial
 		          in.close();
 		          fileIn.close();
 	    	  }
+	       }catch(StreamCorruptedException s){
+	    	   System.out.println("Chosen file is not a command list");
 	       }catch(IOException i) {
 	          i.printStackTrace();
 	       }catch(ClassNotFoundException c) {
-	          System.out.println("Employee class not found");
+	          System.out.println("Class not found");
 	          c.printStackTrace();
 	       }
 	}
