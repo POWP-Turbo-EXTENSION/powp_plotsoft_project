@@ -119,4 +119,16 @@ public class ComplexCommand implements ICompoundCommand, IPlotterCommand, Serial
 	          c.printStackTrace();
 	       }
 	}
+	public static List<ComplexCommand> findComplexCommands(){
+		List<ComplexCommand> list = new ArrayList<ComplexCommand>();
+		
+		File folder = new File("./src/commands/");
+		File[] listOfFiles = folder.listFiles();
+		for (File file : listOfFiles) {
+		    if (file.isFile()) {
+		        list.add(new ComplexCommand(file.getName().substring(0, file.getName().length()-4)));
+		    }
+		}
+		return list;
+	}
 }

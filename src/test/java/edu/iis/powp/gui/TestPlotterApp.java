@@ -2,20 +2,15 @@ package edu.iis.powp.gui;
 
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import javax.swing.JButton;
-import javax.swing.JFileChooser;
 
 import edu.iis.client.plottermagic.ClientPlotter;
 import edu.iis.client.plottermagic.IPlotter;
 import edu.iis.powp.adapter.LineAdapterPlotterDriver;
 import edu.iis.powp.app.Application;
 import edu.iis.powp.appext.FeaturesManager;
-import edu.iis.powp.command.FigureFactory;
 import edu.iis.powp.command.gui.CommandManagerWindow;
 import edu.iis.powp.command.gui.CommandManagerWindowCommandChangeObserver;
 import edu.iis.powp.events.SelectLoadSecretCommandOptionListener;
@@ -39,7 +34,7 @@ public class TestPlotterApp {
 		SelectTestFigureOptionListener selectTestFigureOptionListener = new SelectTestFigureOptionListener();
 		SelectTestFigure2OptionListener selectTestFigure2OptionListener = new SelectTestFigure2OptionListener();
 		ComplexCommand kwadrat = new ComplexCommand();
-		kwadrat.Load();
+		kwadrat.Load("Kwadrat2");
 		SelectTestFigureOptionCommandListener selectTestFigureOptionCommandListener = new SelectTestFigureOptionCommandListener(
 				FigureFactory.getSquare(10, 10, 40), application);
 		SelectTestFigureOptionCommandListener selectTestFigureOptionCommandListener2 = new SelectTestFigureOptionCommandListener(
@@ -131,7 +126,7 @@ public class TestPlotterApp {
 				setupLogger(app);
 				setupWindows(app);
 				app.setVisibility(true);
-				
+				ArrayList<ComplexCommand> bec = (ArrayList<ComplexCommand>) ComplexCommand.findComplexCommands();
 			}
 		});	
 	}
