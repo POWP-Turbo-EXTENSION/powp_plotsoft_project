@@ -103,6 +103,8 @@ public class ComplexCommand implements ICompoundCommand, IPlotterCommand, Serial
 	    	  int result = fileChooser.showOpenDialog(null);
 	    	  if (result == JFileChooser.APPROVE_OPTION) {
 		          FileInputStream fileIn = new FileInputStream(fileChooser.getSelectedFile().getAbsolutePath());
+		          name = fileChooser.getSelectedFile().getName();
+		          name = name.substring(0, name.length()-4);
 		          ObjectInputStream in = new ObjectInputStream(fileIn);
 		          commands = (List<IPlotterCommand>) in.readObject();
 		          in.close();
