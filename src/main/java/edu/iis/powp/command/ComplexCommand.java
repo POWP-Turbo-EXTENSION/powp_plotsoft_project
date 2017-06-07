@@ -15,7 +15,7 @@ import edu.iis.client.plottermagic.IPlotter;
 public class ComplexCommand implements ICompoundCommand, IPlotterCommand, Serializable {
 
     List<IPlotterCommand> commands = new ArrayList<>();
-    private String name;
+    private String name = null;
 
     public ComplexCommand() {
         super();
@@ -62,17 +62,19 @@ public class ComplexCommand implements ICompoundCommand, IPlotterCommand, Serial
        }
 	}
 	public void Save(){
-	      try {
-	          FileOutputStream fileOut = new FileOutputStream("./src/commands/" + name + ".ser");
-	          ObjectOutputStream out = new ObjectOutputStream(fileOut);
-	          out.writeObject(commands);
-	          out.close();
-	          fileOut.close();
-	          System.out.printf("Serialized command at " + "/commands/" + name + ".ser");
-	       }catch(IOException i) {
-	          i.printStackTrace();
-	       }
-		}
+	    if(name!=null){
+			try {
+		        FileOutputStream fileOut = new FileOutputStream("./src/commands/" + name + ".ser");
+		        ObjectOutputStream out = new ObjectOutputStream(fileOut);
+		        out.writeObject(commands);
+		        out.close();
+		        fileOut.close();
+		        System.out.printf("Serialized command at " + "/commands/" + name + ".ser");
+			}catch(IOException i) {
+				i.printStackTrace();
+		    }
+	    }
+	}
 	public void Load(String name){
 	      try {
 	    	  this.name = name;
