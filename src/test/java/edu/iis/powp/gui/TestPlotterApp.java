@@ -2,8 +2,13 @@ package edu.iis.powp.gui;
 
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
 
 import edu.iis.client.plottermagic.ClientPlotter;
 import edu.iis.client.plottermagic.IPlotter;
@@ -33,8 +38,10 @@ public class TestPlotterApp {
 	private static void setupPresetTests(Application application) {
 		SelectTestFigureOptionListener selectTestFigureOptionListener = new SelectTestFigureOptionListener();
 		SelectTestFigure2OptionListener selectTestFigure2OptionListener = new SelectTestFigure2OptionListener();
+		ComplexCommand kwadrat = new ComplexCommand();
+		kwadrat.Load();
 		SelectTestFigureOptionCommandListener selectTestFigureOptionCommandListener = new SelectTestFigureOptionCommandListener(
-				FigureFactory.getSquare(10, 10, 40), application);
+				kwadrat, application);
 		SelectTestFigureOptionCommandListener selectTestFigureOptionCommandListener2 = new SelectTestFigureOptionCommandListener(
 				(IPlotterCommand)new ComplexCommand("Kwadrat2"), application);
 		application.addTest("Figure Joe 1", selectTestFigureOptionListener);
@@ -123,10 +130,9 @@ public class TestPlotterApp {
 				setupCommandTests(app);
 				setupLogger(app);
 				setupWindows(app);
-
 				app.setVisibility(true);
+				
 			}
-		});
+		});	
 	}
-
 }

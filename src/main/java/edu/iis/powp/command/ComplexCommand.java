@@ -1,5 +1,6 @@
 package edu.iis.powp.command;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -10,7 +11,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.swing.JFileChooser;
+import javax.swing.JPanel;
+
 import edu.iis.client.plottermagic.IPlotter;
+import edu.iis.powp.app.Application;
 
 public class ComplexCommand implements ICompoundCommand, IPlotterCommand, Serializable {
 
@@ -85,11 +90,28 @@ public class ComplexCommand implements ICompoundCommand, IPlotterCommand, Serial
 	          fileIn.close();
 	       }catch(IOException i) {
 	          i.printStackTrace();
-	          return;
 	       }catch(ClassNotFoundException c) {
 	          System.out.println("Employee class not found");
 	          c.printStackTrace();
-	          return;
+	       }
+	}
+	public void Load(){
+	      try {
+	    	  JFileChooser fileChooser = new JFileChooser();
+	    	//  fileChooser.setCurrentDirectory(new File(System.getProperty("./src/commands/")));
+	    	  int result = fileChooser.showOpenDialog(null);
+	    	  if (result == JFileChooser.APPROVE_OPTION) {
+		          FileInputStream fileIn = new FileInputStream(fileChooser.getSelectedFile().getAbsolutePath());
+		          ObjectInputStream in = new ObjectInputStream(fileIn);
+		          commands = (List<IPlotterCommand>) in.readObject();
+		          in.close();
+		          fileIn.close();
+	    	  }
+	       }catch(IOException i) {
+	          i.printStackTrace();
+	       }catch(ClassNotFoundException c) {
+	          System.out.println("Employee class not found");
+	          c.printStackTrace();
 	       }
 	}
 }
