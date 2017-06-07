@@ -20,7 +20,7 @@ import edu.iis.powp.events.predefine.SelectTestFigureOptionCommandListener;
 import edu.iis.powp.events.predefine.SelectTestFigureOptionListener;
 import edu.kis.powp.drawer.panel.DrawPanelController;
 import edu.kis.powp.drawer.shape.LineFactory;
-
+import edu.iis.powp.command.*;
 public class TestPlotterApp {
 	private final static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
@@ -35,9 +35,12 @@ public class TestPlotterApp {
 		SelectTestFigure2OptionListener selectTestFigure2OptionListener = new SelectTestFigure2OptionListener();
 		SelectTestFigureOptionCommandListener selectTestFigureOptionCommandListener = new SelectTestFigureOptionCommandListener(
 				FigureFactory.getSquare(10, 10, 40), application);
+		SelectTestFigureOptionCommandListener selectTestFigureOptionCommandListener2 = new SelectTestFigureOptionCommandListener(
+				(IPlotterCommand)new ComplexCommand("Kwadrat2"), application);
 		application.addTest("Figure Joe 1", selectTestFigureOptionListener);
 		application.addTest("Figure KWADRAT", selectTestFigureOptionCommandListener);
 		application.addTest("Figure Joe 2", selectTestFigure2OptionListener);
+		application.addTest("Wczytana figura", selectTestFigureOptionCommandListener2);
 	}
 
 	/**
