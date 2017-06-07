@@ -41,9 +41,9 @@ public class TestPlotterApp {
 		ComplexCommand kwadrat = new ComplexCommand();
 		kwadrat.Load();
 		SelectTestFigureOptionCommandListener selectTestFigureOptionCommandListener = new SelectTestFigureOptionCommandListener(
-				kwadrat, application);
+				FigureFactory.getSquare(10, 10, 40), application);
 		SelectTestFigureOptionCommandListener selectTestFigureOptionCommandListener2 = new SelectTestFigureOptionCommandListener(
-				(IPlotterCommand)new ComplexCommand("Kwadrat2"), application);
+				kwadrat, application);
 		application.addTest("Figure Joe 1", selectTestFigureOptionListener);
 		application.addTest("Figure KWADRAT", selectTestFigureOptionCommandListener);
 		application.addTest("Figure Joe 2", selectTestFigure2OptionListener);
