@@ -64,7 +64,6 @@ public class PlotterGUI extends JFrame {
 	 * Free panel.
 	 */
 	private JPanel freePanel = null;
-	private JScrollPane freeScrollPanelRight = null;
 	private JPanel freePanelRight = null;
 
 	/**
@@ -196,17 +195,12 @@ public class PlotterGUI extends JFrame {
 
 
 		freePanelRight = new JPanel();
-		freeScrollPanelRight = new JScrollPane(freePanelRight);
-//		Dimension sad = new Dimension(200, 540);
-//		freePanelRight.setMinimumSize(sad);
 		GridBagConstraints gbcRightScrollPane = new GridBagConstraints();
-
 		gbcRightScrollPane.fill = GridBagConstraints.BOTH;
-		gbcRightScrollPane.gridheight = 1;
+		gbcRightScrollPane.gridheight = 2;
 		gbcRightScrollPane.gridx = 2;
-		gbcRightScrollPane.gridy = 1;
-
-		this.getContentPane().add(freeScrollPanelRight, gbcRightScrollPane);
+		gbcRightScrollPane.gridy = 0;
+		this.getContentPane().add(freePanelRight, gbcRightScrollPane);
 		commandListScrollPane.setViewportView(freePanel);
 		/*
 		 * Logger scroll pane.
