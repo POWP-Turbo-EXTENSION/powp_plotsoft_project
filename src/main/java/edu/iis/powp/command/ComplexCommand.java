@@ -1,7 +1,9 @@
 package edu.iis.powp.command;
 
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -17,6 +19,11 @@ public class ComplexCommand implements ICompoundCommand, IPlotterCommand, Serial
 
     public ComplexCommand() {
         super();
+    }
+    
+    public ComplexCommand(String name){
+    	super();
+    	Load(name);
     }
 
     @Override
@@ -46,12 +53,29 @@ public class ComplexCommand implements ICompoundCommand, IPlotterCommand, Serial
       try {
           FileOutputStream fileOut = new FileOutputStream("./src/commands/" + name + ".ser");
           ObjectOutputStream out = new ObjectOutputStream(fileOut);
-          out.writeObject(this);
+          out.writeObject(commands);
           out.close();
           fileOut.close();
           System.out.printf("Serialized command at " + "/commands/" + name + ".ser");
        }catch(IOException i) {
           i.printStackTrace();
        }
+	}
+	public void Load(String name){
+	      try {
+	    	  this.name = name;
+	          FileInputStream fileIn = new FileInputStream("./src/commands/" + name + ".ser");
+	          ObjectInputStream in = new ObjectInputStream(fileIn);
+	          commands = (List<IPlotterCommand>) in.readObject();
+	          in.close();
+	          fileIn.close();
+	       }catch(IOException i) {
+	          i.printStackTrace();
+	          return;
+	       }catch(ClassNotFoundException c) {
+	          System.out.println("Employee class not found");
+	          c.printStackTrace();
+	          return;
+	       }
 	}
 }
