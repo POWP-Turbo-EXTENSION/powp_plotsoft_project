@@ -1,5 +1,6 @@
 package edu.iis.powp.command.manager;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -58,6 +59,29 @@ public class PlotterCommandManager
 
     }
     
+    public synchronized void setCurrentCommand(IPlotterCommand singleCommand, String name) {
+    	List<IPlotterCommand> commandInAList = new ArrayList<IPlotterCommand>();
+    	commandInAList.add(singleCommand);
+    	setCurrentCommand(new ICompoundCommand() {
+			
+    		List<IPlotterCommand> plotterCommands = commandInAList;
+    		
+			@Override
+			public void execute(IPlotter plotter) {
+				plotterCommands.forEach((c) -> c.execute(plotter));
+			}
+			
+			@Override
+			public Iterator<IPlotterCommand> iterator() {
+				return plotterCommands.iterator();
+			}
+			
+			@Override
+			public String toString() {
+				return name;
+			}
+		});
+    }
     /**
      * Return current command.
      * 
