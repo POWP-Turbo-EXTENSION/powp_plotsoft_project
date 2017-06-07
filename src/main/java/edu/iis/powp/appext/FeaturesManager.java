@@ -1,7 +1,13 @@
 package edu.iis.powp.appext;
 
+import java.awt.BorderLayout;
+
+import javax.swing.JPanel;
+
 import edu.iis.powp.app.Application;
 import edu.iis.powp.app.DriverManager;
+import edu.iis.powp.command.editor.CommandEditorMenu;
+import edu.iis.powp.command.editor.CommandTree;
 import edu.iis.powp.command.manager.LoggerCommandChangeObserver;
 import edu.iis.powp.command.manager.PlotterCommandManager;
 import edu.iis.powp.events.predefine.SelectClearPanelOptionListener;
@@ -14,7 +20,7 @@ public class FeaturesManager {
 	private static PlotterCommandManager commandManager;
 	private static DriverManager driverManager;
 	private static DrawPanelController drawerController;
-
+	private static CommandTree commandTree;
 	/**
 	 * Startup configuration.
 	 */
@@ -23,17 +29,31 @@ public class FeaturesManager {
 			areFeaturesAdded = true;
 
 			driverManager = application.getDriverManager();
+			setupTree(application);
 			setupCommandManager();
-
 			setupDrawerPlugin(application);
 		}
 	}
 
+	private static void setupTree(Application application) {
+		// TODO Auto-generated method stub
+		JPanel test= new JPanel();
+		test.setLayout(new BorderLayout());
+		application.getFreeRightPanel().setLayout(new BorderLayout());
+
+		application.getFreeRightPanel().add(test, BorderLayout.CENTER);
+
+		commandTree = new CommandTree(application);
+		//ct.setTreeDemo();
+		CommandEditorMenu cmdMenu = new CommandEditorMenu(application);
+		
+	}
+
 	private static void setupCommandManager() {
 		commandManager = new PlotterCommandManager();
-
 		LoggerCommandChangeObserver loggerObserver = new LoggerCommandChangeObserver();
 		commandManager.getChangePublisher().addSubscriber(loggerObserver);
+		commandManager.getChangePublisher().addSubscriber(commandTree);
 	}
 
 	/**
@@ -77,5 +97,9 @@ public class FeaturesManager {
 	 */
 	public static PlotterCommandManager getPlotterCommandManager() {
 		return commandManager;
+	}
+	
+	public static CommandTree getCommandTree() {
+		return commandTree;
 	}
 }

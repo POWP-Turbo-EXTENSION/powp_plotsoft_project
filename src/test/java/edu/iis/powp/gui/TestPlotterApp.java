@@ -93,20 +93,6 @@ public class TestPlotterApp {
 		FeaturesManager.getPlotterCommandManager().getChangePublisher().addSubscriber(windowObserver);
 
 	}
-
-	private static void setupEditor(Application application) {
-		JPanel test= new JPanel();
-		test.setLayout(new BorderLayout());
-		application.getFreeRightPanel().setLayout(new BorderLayout());
-
-		application.getFreeRightPanel().add(test, BorderLayout.CENTER);
-
-		CommandTree ct = new CommandTree(application);
-		ct.setTreeDemo();
-		CommandEditorMenu cmdMenu = new CommandEditorMenu(application);
-
-	}
-	
 	/**
 	 * Setup menu for adjusting logging settings.
 	 * 
@@ -142,7 +128,6 @@ public class TestPlotterApp {
 				setupCommandTests(app);
 				setupLogger(app);
 				setupWindows(app);
-				setupEditor(app);
 
 				app.setVisibility(true);
 			}
