@@ -21,12 +21,15 @@ public class CommandTree implements ICommandTree{
 	private Application app;
 	private JPanel treePanel;
 	private JTree tree;
+
 	private IPlotterCommand currentCommand;
+
 	public CommandTree(Application app) {
 		super();
 		this.app = app;
 		treePanel = new JPanel();
 	}
+
 	
 	@Override
 	public void update() {
