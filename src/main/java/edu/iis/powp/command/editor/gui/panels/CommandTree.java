@@ -11,9 +11,6 @@ import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreeSelectionModel;
 
-import edu.iis.powp.command.ICompoundCommand;
-import edu.iis.powp.command.IPlotterCommand;
-import edu.iis.powp.command.editor.ITreeAction;
 import edu.iis.powp.command.editor.ITreeBehaviour;
 import edu.iis.powp.command.editor.ITreeConfiguration;
 

@@ -2,6 +2,7 @@ package edu.iis.powp.command.manager;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 import edu.iis.client.plottermagic.IPlotter;
 import edu.iis.powp.command.ComplexCommand;
@@ -48,8 +49,8 @@ public class PlotterCommandManager
 			}
 			
 			@Override
-			public Iterator<IPlotterCommand> iterator() {
-				return plotterCommands.iterator();
+			public ListIterator<IPlotterCommand> iterator() {
+				return plotterCommands.listIterator();
 			}
 			
 			@Override

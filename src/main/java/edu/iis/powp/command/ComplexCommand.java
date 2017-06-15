@@ -3,6 +3,7 @@ package edu.iis.powp.command;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 import edu.iis.client.plottermagic.IPlotter;
 import edu.iis.powp.command.visitor.Visitor;
@@ -24,8 +25,8 @@ public class ComplexCommand implements ICompoundCommand {
 	}
 
 	@Override
-	public Iterator<IPlotterCommand> iterator() {
-		return commands.iterator();
+	public ListIterator<IPlotterCommand> iterator() {
+		return commands.listIterator();
 	}
 
 	public void addCommand(IPlotterCommand command) {
