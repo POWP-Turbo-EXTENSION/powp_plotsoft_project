@@ -8,15 +8,16 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import edu.iis.powp.command.editor.ICommandEditorAction;
+import edu.iis.powp.command.editor.ITreeOperations;
 
 public class TreeManipulationButtons extends JPanel implements ActionListener {
 	private final JButton moveUp = new JButton("↑Up");
 	private final JButton moveDown = new JButton("↓Down");
 	private final JButton deleteIt = new JButton("×Delete");
 	private final JButton editIt = new JButton("→Edit");
-	private final ICommandEditorAction buttonsAction;
+	private final ITreeOperations buttonsAction;
 
-	public TreeManipulationButtons(ICommandEditorAction buttonsAction) {
+	public TreeManipulationButtons(ITreeOperations buttonsAction) {
 		super();
 		this.buttonsAction = buttonsAction;
 		initUI();
@@ -28,11 +29,14 @@ public class TreeManipulationButtons extends JPanel implements ActionListener {
 		this.add(moveDown);
 		this.add(deleteIt);
 		this.add(editIt);
+		this.editIt.addActionListener(this);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		if(e.getSource().equals(editIt)){
+			buttonsAction.testAction();
+		}
 
 	}
 }

@@ -8,7 +8,7 @@ import edu.iis.client.plottermagic.IPlotter;
 public class DrawToCommand implements IPlotterCommand {
 
 	private int posX, posY;
-	
+
 	public DrawToCommand(int posX, int posY) {
 		super();
 		this.posX = posX;
@@ -20,4 +20,14 @@ public class DrawToCommand implements IPlotterCommand {
 		plotter.drawTo(posX, posY);
 	}
 
+	@Override
+	public String toString() {
+		return getClass().getSimpleName();
+	}
+
+	@Override
+	public String ke() {
+		// TODO Auto-generated method stub
+		return "GSD";
+	}
 }

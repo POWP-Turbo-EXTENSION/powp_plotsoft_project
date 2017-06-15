@@ -13,5 +13,5 @@ public interface IPlotterCommand {
      * @param plotter plotter.
      */
 	public void execute(IPlotter plotter);
-	
+	public String ke();
 }

@@ -12,6 +12,7 @@ import edu.iis.powp.app.Application;
 import edu.iis.powp.appext.FeaturesManager;
 import edu.iis.powp.command.FigureFactory;
 import edu.iis.powp.command.editor.CommandEditorAction;
+import edu.iis.powp.command.editor.CommandTreeService;
 import edu.iis.powp.command.editor.gui.CommandEditorWindow;
 import edu.iis.powp.command.gui.CommandManagerWindow;
 import edu.iis.powp.command.gui.CommandManagerWindowCommandChangeObserver;
@@ -78,7 +79,7 @@ public class TestPlotterApp {
 	private static void setupWindows(Application application) {
 
 		CommandManagerWindow commandManager = new CommandManagerWindow(FeaturesManager.getPlotterCommandManager());
-		CommandEditorAction commandEditorAction = new CommandEditorAction(FeaturesManager.getPlotterCommandManager());
+		CommandEditorAction commandEditorAction = new CommandEditorAction(FeaturesManager.getPlotterCommandManager());		
 		CommandEditorWindow commandEditorUI = new CommandEditorWindow(commandEditorAction);
 		application.addWindowComponent("Command Manager", commandManager);
 		application.addWindowComponent("Command Editor", commandEditorUI);

@@ -38,4 +38,16 @@ public class ComplexCommand implements ICompoundCommand {
 	public IPlotterCommand getCommand(int position) {
 		return commands.get(position);
 	}
+
+	@Override
+	public String toString() {
+		return "ComplexCommand";
+	}
+
+	@Override
+	public String ke() {
+		// TODO Auto-generated method stub
+		return "TIA";
+	}
+	
 }

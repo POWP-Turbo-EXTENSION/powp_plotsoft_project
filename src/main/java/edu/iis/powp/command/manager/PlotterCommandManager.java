@@ -54,6 +54,12 @@ public class PlotterCommandManager
 			public String toString() {
 				return name;
 			}
+
+			@Override
+			public String ke() {
+				// TODO Auto-generated method stub
+				return "zxcz";
+			}
 		});
 
     }
