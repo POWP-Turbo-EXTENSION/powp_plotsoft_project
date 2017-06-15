@@ -42,7 +42,7 @@ public class ComplexCommand implements ICompoundCommand {
 
 	@Override
 	public String toString() {
-		return "ComplexCommand";
+		return "ComplexCommand"+System.currentTimeMillis();
 	}
 
 }

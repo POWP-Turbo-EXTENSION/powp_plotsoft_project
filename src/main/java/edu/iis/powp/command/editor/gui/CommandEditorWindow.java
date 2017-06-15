@@ -13,6 +13,8 @@ import javax.swing.JPanel;
 
 import edu.iis.powp.command.editor.CommandTreeService;
 import edu.iis.powp.command.editor.ICommandEditorAction;
+import edu.iis.powp.command.editor.IOperationsOnTree;
+import edu.iis.powp.command.editor.ITreeBehaviour;
 import edu.iis.powp.command.editor.gui.panels.CommandTree;
 import edu.iis.powp.command.editor.gui.panels.ManageCommandButtons;
 import edu.iis.powp.command.editor.gui.panels.TreeManipulationButtons;
@@ -28,15 +30,15 @@ public class CommandEditorWindow extends JFrame implements WindowComponent {
 	private final ManageCommandButtons buttonsSouth;
 	private final CommandTree centralPane;
 	private final TreeManipulationButtons buttonsNorth;
-	private final CommandTreeService service = new CommandTreeService();
+//	private final CommandTreeService service;
 
-	public CommandEditorWindow(ICommandEditorAction buttonsAction) {
+	public CommandEditorWindow(ICommandEditorAction buttonsAction, IOperationsOnTree onTree, ITreeBehaviour behaviour) {
 		super();		
 						
 		this.centralPane = new CommandTree();
 		this.buttonsSouth = new ManageCommandButtons(buttonsAction);
-		this.buttonsNorth = new TreeManipulationButtons(service);
-		centralPane.setTreeBehaviour(service);
+		this.buttonsNorth = new TreeManipulationButtons(onTree);
+		centralPane.setTreeBehaviour(behaviour);
 		buttonsAction.setTreeConfiguration(centralPane);
 		
 		initUI();

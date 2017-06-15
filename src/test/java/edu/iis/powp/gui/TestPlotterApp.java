@@ -80,12 +80,14 @@ public class TestPlotterApp {
 
 		CommandManagerWindow commandManager = new CommandManagerWindow(FeaturesManager.getPlotterCommandManager());
 		CommandEditorAction commandEditorAction = new CommandEditorAction(FeaturesManager.getPlotterCommandManager());		
-		CommandEditorWindow commandEditorUI = new CommandEditorWindow(commandEditorAction);
+		CommandTreeService treeService = new CommandTreeService(FeaturesManager.getPlotterCommandManager());
+		CommandEditorWindow commandEditorUI = new CommandEditorWindow(commandEditorAction,treeService,treeService);
 		application.addWindowComponent("Command Manager", commandManager);
 		application.addWindowComponent("Command Editor", commandEditorUI);
 
 		CommandManagerWindowCommandChangeObserver windowObserver = new CommandManagerWindowCommandChangeObserver(
 				commandManager);
+		FeaturesManager.getPlotterCommandManager().getChangePublisher().addSubscriber(treeService);
 		FeaturesManager.getPlotterCommandManager().getChangePublisher().addSubscriber(commandEditorAction);
 		FeaturesManager.getPlotterCommandManager().getChangePublisher().addSubscriber(windowObserver);
 		

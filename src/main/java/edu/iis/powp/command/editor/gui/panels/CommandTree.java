@@ -17,7 +17,7 @@ import edu.iis.powp.command.editor.ITreeAction;
 import edu.iis.powp.command.editor.ITreeBehaviour;
 import edu.iis.powp.command.editor.ITreeConfiguration;
 
-public class CommandTree extends JPanel implements ITreeConfiguration, TreeSelectionListener, ITreeAction {
+public class CommandTree extends JPanel implements ITreeConfiguration, TreeSelectionListener {
 
 	/**
 	 * 
@@ -113,17 +113,12 @@ public class CommandTree extends JPanel implements ITreeConfiguration, TreeSelec
 			if (treeBehaviour != null)
 				treeBehaviour.dirIsSelected(nodeInfo);
 		}
+		
 	}
 
-	@Override
-	public Object getSelectedObject() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 	@Override
-	public TreeModel getActualTreeModel(){
-		
+	public TreeModel getActualTreeModel(){		
 		return tree.getModel();
 	}
 }
