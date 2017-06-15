@@ -17,8 +17,23 @@ import edu.iis.powp.window.WindowComponent;
 public class CommandEditorWindow extends JFrame implements WindowComponent {
 
 	private final JPanel buttonsSouth;
+	private final JPanel buttonsNorth;
 	private final PlotterCommandManager commandManager;
-	
+		
+	public CommandEditorWindow(PlotterCommandManager commandManager, ICommandEditorAction buttonsAction) {
+		super();
+		this.commandManager = commandManager;
+		this.buttonsSouth = new CommandEditorSouthButtonsPane(buttonsAction);
+		this.buttonsNorth = new CommandEditorNorthButtonsPane(buttonsAction);
+		initUI();
+	}
+
+	private void initUI() {
+		this.setLayout(new BorderLayout());
+		this.getContentPane().add(buttonsSouth, BorderLayout.SOUTH);
+		this.getContentPane().add(buttonsNorth, BorderLayout.NORTH);
+		pack();
+	}
 	
 	@Override
 	public void HideIfVisibleAndShowIfHidden() {
@@ -29,20 +44,4 @@ public class CommandEditorWindow extends JFrame implements WindowComponent {
 		}
 		
 	}
-	
-
-	public CommandEditorWindow(PlotterCommandManager commandManager, ICommandEditorAction buttonsAction) {
-		super();
-		this.commandManager = commandManager;
-		this.buttonsSouth = new CommandEditorButtonsPane(buttonsAction);
-		initUI();
-	}
-
-
-	private void initUI() {
-		this.setLayout(new BorderLayout());
-		this.getContentPane().add(buttonsSouth, BorderLayout.SOUTH);
-		pack();
-	}
-
 }

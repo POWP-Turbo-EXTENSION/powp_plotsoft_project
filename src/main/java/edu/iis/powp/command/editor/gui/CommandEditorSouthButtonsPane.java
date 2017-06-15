@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 
 import edu.iis.powp.command.editor.ICommandEditorAction;
 
-public class CommandEditorButtonsPane extends JPanel implements ActionListener {
+public class CommandEditorSouthButtonsPane extends JPanel implements ActionListener {
 	/**
 	 * 
 	 */
@@ -22,14 +22,15 @@ public class CommandEditorButtonsPane extends JPanel implements ActionListener {
 	private final JButton newPosition = new JButton("Add position");
 	private final JButton newLine = new JButton("Add line");
 
-	public CommandEditorButtonsPane(ICommandEditorAction buttonsAction) {
+	
+	public CommandEditorSouthButtonsPane(ICommandEditorAction buttonsAction) {
 		super();
 		this.buttonsAction = buttonsAction;
 		initUI();
 	}
 
 	private void initUI() {
-		this.setLayout(new GridLayout(4, 4));
+		this.setLayout(new GridLayout(4, 1));
 		this.add(newComplexCommand);
 		this.add(saveComplexCommand);
 		this.add(newPosition);
