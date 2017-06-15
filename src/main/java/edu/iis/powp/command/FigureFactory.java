@@ -1,5 +1,7 @@
 package edu.iis.powp.command;
 
+import edu.iis.powp.appext.FeaturesManager;
+import edu.iis.powp.command.manager.PlotterCommandManager;
 
 public class FigureFactory {
     public static IPlotterCommand getSquare(int startX, int startY, int size) {

@@ -12,22 +12,29 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import edu.iis.powp.command.editor.ICommandEditorAction;
+import edu.iis.powp.command.editor.gui.panels.CommandTree;
+import edu.iis.powp.command.editor.gui.panels.ManageCommandButtons;
+import edu.iis.powp.command.editor.gui.panels.TreeManipulationButtons;
 import edu.iis.powp.command.manager.PlotterCommandManager;
 import edu.iis.powp.window.WindowComponent;
 
 public class CommandEditorWindow extends JFrame implements WindowComponent {
 
-	private final CommandEditorSouthButtonsPane buttonsSouth;
-	private final CommandEditorCentralPane centralPane;
-	private final CommandEditorNorthButtonsPane buttonsNorth;
-	private final PlotterCommandManager commandManager;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6391923043891870668L;
+	private final ManageCommandButtons buttonsSouth;
+	private final CommandTree centralPane;
+	private final TreeManipulationButtons buttonsNorth;
 
-	public CommandEditorWindow(PlotterCommandManager commandManager, ICommandEditorAction buttonsAction) {
-		super();
-		this.commandManager = commandManager;
-		this.buttonsSouth = new CommandEditorSouthButtonsPane(buttonsAction);
-		this.buttonsNorth = new CommandEditorNorthButtonsPane(buttonsAction);
-		this.centralPane = new CommandEditorCentralPane();
+
+	public CommandEditorWindow(ICommandEditorAction buttonsAction) {
+		super();		
+		this.buttonsSouth = new ManageCommandButtons(buttonsAction);
+		this.buttonsNorth = new TreeManipulationButtons(buttonsAction);
+		this.centralPane = new CommandTree();
+		buttonsAction.setTreeConfiguration(centralPane);
 		initUI();
 	}
 
@@ -47,6 +54,6 @@ public class CommandEditorWindow extends JFrame implements WindowComponent {
 		} else {
 			this.setVisible(true);
 		}
-		centralPane.setTreeNode(System.currentTimeMillis()+"_NODE");
+//		centralPane.setTreeNode(System.currentTimeMillis()+"_NODE");
 	}
 }

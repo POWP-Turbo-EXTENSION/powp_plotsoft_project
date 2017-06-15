@@ -1,4 +1,4 @@
-package edu.iis.powp.command.editor.gui;
+package edu.iis.powp.command.editor.gui.panels;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 
 import edu.iis.powp.command.editor.ICommandEditorAction;
 
-public class CommandEditorSouthButtonsPane extends JPanel implements ActionListener {
+public class ManageCommandButtons extends JPanel implements ActionListener {
 	/**
 	 * 
 	 */
@@ -23,7 +23,7 @@ public class CommandEditorSouthButtonsPane extends JPanel implements ActionListe
 	private final JButton newLine = new JButton("Add line");
 
 	
-	public CommandEditorSouthButtonsPane(ICommandEditorAction buttonsAction) {
+	public ManageCommandButtons(ICommandEditorAction buttonsAction) {
 		super();
 		this.buttonsAction = buttonsAction;
 		initUI();

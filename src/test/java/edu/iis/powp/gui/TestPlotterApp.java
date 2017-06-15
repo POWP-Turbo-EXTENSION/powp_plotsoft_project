@@ -78,13 +78,14 @@ public class TestPlotterApp {
 	private static void setupWindows(Application application) {
 
 		CommandManagerWindow commandManager = new CommandManagerWindow(FeaturesManager.getPlotterCommandManager());
-		CommandEditorWindow commandEditor = new CommandEditorWindow(FeaturesManager.getPlotterCommandManager(), new CommandEditorAction());
+		CommandEditorAction commandEditorAction = new CommandEditorAction(FeaturesManager.getPlotterCommandManager());
+		CommandEditorWindow commandEditorUI = new CommandEditorWindow(commandEditorAction);
 		application.addWindowComponent("Command Manager", commandManager);
-		application.addWindowComponent("Command Editor", commandEditor);
+		application.addWindowComponent("Command Editor", commandEditorUI);
 
 		CommandManagerWindowCommandChangeObserver windowObserver = new CommandManagerWindowCommandChangeObserver(
 				commandManager);
-
+		FeaturesManager.getPlotterCommandManager().getChangePublisher().addSubscriber(commandEditorAction);
 		FeaturesManager.getPlotterCommandManager().getChangePublisher().addSubscriber(windowObserver);
 		
 

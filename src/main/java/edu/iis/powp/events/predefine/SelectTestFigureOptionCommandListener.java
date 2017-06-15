@@ -5,7 +5,9 @@ import java.awt.event.ActionListener;
 
 import edu.iis.powp.app.Application;
 import edu.iis.powp.app.DriverManager;
+import edu.iis.powp.appext.FeaturesManager;
 import edu.iis.powp.command.IPlotterCommand;
+import edu.iis.powp.command.manager.PlotterCommandManager;
 
 public class SelectTestFigureOptionCommandListener implements ActionListener
 {
@@ -24,6 +26,8 @@ public class SelectTestFigureOptionCommandListener implements ActionListener
     public void actionPerformed(ActionEvent e)
     {
 		command.execute(app.getDriverManager().getCurrentPlotter());
+	    PlotterCommandManager manager = FeaturesManager.getPlotterCommandManager();
+	    manager.setCurrentCommand(command);
         
     }
 }

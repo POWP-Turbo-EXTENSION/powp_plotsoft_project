@@ -6,7 +6,7 @@ import java.util.List;
 
 import edu.iis.client.plottermagic.IPlotter;
 
-public class ComplexCommand implements ICompoundCommand, IPlotterCommand {
+public class ComplexCommand implements ICompoundCommand {
 
     List<IPlotterCommand> commands = new ArrayList<>();
     

@@ -1,4 +1,4 @@
-package edu.iis.powp.command.editor.gui;
+package edu.iis.powp.command.editor.gui.panels;
 
 import java.awt.BorderLayout;
 
@@ -9,12 +9,16 @@ import javax.swing.tree.DefaultTreeModel;
 
 import edu.iis.powp.command.editor.ITreeConfiguration;
 
-public class CommandEditorCentralPane extends JPanel implements ITreeConfiguration {
+public class CommandTree extends JPanel implements ITreeConfiguration {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6050208091232026397L;
 	private JTree tree = new JTree();
 	private final DefaultMutableTreeNode treeNode = new DefaultMutableTreeNode("Empty");
 	private final DefaultTreeModel treeModel = new DefaultTreeModel(treeNode); 
-	public CommandEditorCentralPane() {
+	public CommandTree() {
 		super();
 		initUI();
 	}
@@ -36,9 +40,6 @@ public class CommandEditorCentralPane extends JPanel implements ITreeConfigurati
 	@Override
 	public DefaultMutableTreeNode setTreeNode(String rootNodeName) {
 		treeNode.setUserObject(rootNodeName);
-//		treeNode = new DefaultMutableTreeNode(rootNodeName);
-//		treeModel = new DefaultTreeModel( treeNode ); 
-//		tree.setModel(treeModel);
 		tree.validate();
 		treeModel.reload();
 		return treeNode;
