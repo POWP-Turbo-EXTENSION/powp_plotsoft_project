@@ -25,7 +25,7 @@ public class ComplexCommand implements ICompoundCommand, IPlotterCommand {
 
     @Override
     public Iterator<IPlotterCommand> iterator() {
-        return null;
+        return commands.iterator();
     }
     public void addCommand(IPlotterCommand command) {
 		commands.add(command);
