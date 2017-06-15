@@ -15,7 +15,7 @@ public class SelectTestFigureOptionCommandListener implements ActionListener
 	private IPlotterCommand command;
 	private Application app;
 	
-    public SelectTestFigureOptionCommandListener(IPlotterCommand command,Application app) {
+    public SelectTestFigureOptionCommandListener(IPlotterCommand command, Application app) {
 		super();
 		this.command = command;
 		this.app = app;

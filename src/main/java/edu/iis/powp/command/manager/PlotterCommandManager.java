@@ -4,8 +4,10 @@ import java.util.Iterator;
 import java.util.List;
 
 import edu.iis.client.plottermagic.IPlotter;
+import edu.iis.powp.command.ComplexCommand;
 import edu.iis.powp.command.ICompoundCommand;
 import edu.iis.powp.command.IPlotterCommand;
+import edu.iis.powp.command.visitor.Visitor;
 import edu.iis.powp.observer.Publisher;
 
 /**
@@ -36,7 +38,7 @@ public class PlotterCommandManager
      */
     public synchronized void setCurrentCommand(List<IPlotterCommand> commandList, String name)
     {
-    	setCurrentCommand(new ICompoundCommand() {
+    	setCurrentCommand(new ComplexCommand() {
 			
     		List<IPlotterCommand> plotterCommands = commandList;
     		
@@ -55,11 +57,6 @@ public class PlotterCommandManager
 				return name;
 			}
 
-			@Override
-			public String ke() {
-				// TODO Auto-generated method stub
-				return "zxcz";
-			}
 		});
 
     }

@@ -8,6 +8,7 @@ import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreeSelectionModel;
 
 import edu.iis.powp.command.ICompoundCommand;
@@ -119,5 +120,10 @@ public class CommandTree extends JPanel implements ITreeConfiguration, TreeSelec
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
+	@Override
+	public TreeModel getActualTreeModel(){
+		
+		return tree.getModel();
+	}
 }

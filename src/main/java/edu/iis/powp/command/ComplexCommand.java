@@ -5,29 +5,30 @@ import java.util.Iterator;
 import java.util.List;
 
 import edu.iis.client.plottermagic.IPlotter;
+import edu.iis.powp.command.visitor.Visitor;
 
 public class ComplexCommand implements ICompoundCommand {
 
-    List<IPlotterCommand> commands = new ArrayList<>();
-    
+	List<IPlotterCommand> commands = new ArrayList<>();
 
-    public ComplexCommand() {
-        super();
-    }
+	public ComplexCommand() {
+		super();
+	}
 
-    @Override
-    public void execute(IPlotter plotter) {
-    	for (Iterator iterator = commands.iterator(); iterator.hasNext();) {
+	@Override
+	public void execute(IPlotter plotter) {
+		for (Iterator iterator = commands.iterator(); iterator.hasNext();) {
 			IPlotterCommand iPlotterCommand = (IPlotterCommand) iterator.next();
 			iPlotterCommand.execute(plotter);
 		}
-    }
+	}
 
-    @Override
-    public Iterator<IPlotterCommand> iterator() {
-        return commands.iterator();
-    }
-    public void addCommand(IPlotterCommand command) {
+	@Override
+	public Iterator<IPlotterCommand> iterator() {
+		return commands.iterator();
+	}
+
+	public void addCommand(IPlotterCommand command) {
 		commands.add(command);
 	}
 
@@ -44,10 +45,4 @@ public class ComplexCommand implements ICompoundCommand {
 		return "ComplexCommand";
 	}
 
-	@Override
-	public String ke() {
-		// TODO Auto-generated method stub
-		return "TIA";
-	}
-	
 }

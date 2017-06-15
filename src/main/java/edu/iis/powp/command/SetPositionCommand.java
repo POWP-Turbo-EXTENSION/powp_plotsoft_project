@@ -1,11 +1,13 @@
 package edu.iis.powp.command;
 
 import edu.iis.client.plottermagic.IPlotter;
+import edu.iis.powp.command.visitor.Visitable;
+import edu.iis.powp.command.visitor.Visitor;
 
 /**
  * Implementation of IPlotterCommand for setPosition command functionality.
  */
-public class SetPositionCommand implements IPlotterCommand {
+public class SetPositionCommand implements IEditablePlotterCommand {
 
 	private int posX, posY;
 	
@@ -24,12 +26,33 @@ public class SetPositionCommand implements IPlotterCommand {
 	public String toString() {
 		return getClass().getSimpleName();
 	}
+//
+	@Override
+	public void accept(Visitor visitor) {
+		visitor.visit(this);
+	}
 
 	@Override
-	public String ke() {
-		// TODO Auto-generated method stub
-		return "asdas";
+	public int getX() {
+		return posX;
 	}
-	
+
+	@Override
+	public int getY() {
+		return posY;
+	}
+
+	@Override
+	public void setX(int x) {
+		this.posX = x;
+		
+	}
+
+	@Override
+	public void setY(int y) {
+		this.posY = y;
+		
+	}
+
 
 }

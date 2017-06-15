@@ -11,6 +11,7 @@ import edu.iis.powp.command.editor.ICommandEditorAction;
 import edu.iis.powp.command.editor.ITreeOperations;
 
 public class TreeManipulationButtons extends JPanel implements ActionListener {
+	
 	private final JButton moveUp = new JButton("↑Up");
 	private final JButton moveDown = new JButton("↓Down");
 	private final JButton deleteIt = new JButton("×Delete");
