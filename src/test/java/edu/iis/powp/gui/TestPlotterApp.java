@@ -40,7 +40,7 @@ public class TestPlotterApp {
 				FigureFactory.getSquare(10, 10, 40), application);
 		application.addTest("Figure Joe 1", selectTestFigureOptionListener);
 		application.addTest("Figure KWADRAT", selectTestFigureOptionCommandListener);
-		application.addTest("Figure Joe 2", selectTestFigure2OptionListener);
+		application.addTest("Figure Joe 2", selectTestFigure2OptionListener);		
 	}
 
 	/**
@@ -79,9 +79,11 @@ public class TestPlotterApp {
 	private static void setupWindows(Application application) {
 
 		CommandManagerWindow commandManager = new CommandManagerWindow(FeaturesManager.getPlotterCommandManager());
+		
 		CommandEditorAction commandEditorAction = new CommandEditorAction(FeaturesManager.getPlotterCommandManager());		
 		CommandTreeService treeService = new CommandTreeService(FeaturesManager.getPlotterCommandManager());
 		CommandEditorWindow commandEditorUI = new CommandEditorWindow(commandEditorAction,treeService,treeService);
+		
 		application.addWindowComponent("Command Manager", commandManager);
 		application.addWindowComponent("Command Editor", commandEditorUI);
 

@@ -1,6 +1,7 @@
 package edu.iis.powp.command.editor.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GraphicsConfiguration;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
@@ -10,6 +11,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import edu.iis.powp.command.editor.CommandTreeService;
 import edu.iis.powp.command.editor.ICommandEditorAction;
@@ -30,6 +32,7 @@ public class CommandEditorWindow extends JFrame implements WindowComponent {
 	private final ManageCommandButtons buttonsSouth;
 	private final CommandTree centralPane;
 	private final TreeManipulationButtons buttonsNorth;
+	private final static Dimension MINIMAL_WINDOW_SIZE = new Dimension(200, 600);
 //	private final CommandTreeService service;
 
 	public CommandEditorWindow(ICommandEditorAction buttonsAction, IOperationsOnTree onTree, ITreeBehaviour behaviour) {
@@ -46,8 +49,10 @@ public class CommandEditorWindow extends JFrame implements WindowComponent {
 
 	private void initUI() {
 		this.setLayout(new BorderLayout());
+		this.setMinimumSize(MINIMAL_WINDOW_SIZE);
+		this.setPreferredSize(MINIMAL_WINDOW_SIZE);
 		this.getContentPane().add(buttonsSouth, BorderLayout.SOUTH);
-		this.getContentPane().add(centralPane, BorderLayout.CENTER);
+		this.getContentPane().add(new JScrollPane(centralPane), BorderLayout.CENTER);
 		this.getContentPane().add(buttonsNorth, BorderLayout.NORTH);
 		pack();
 		
