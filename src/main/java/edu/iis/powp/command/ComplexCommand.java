@@ -45,5 +45,13 @@ public class ComplexCommand implements ICompoundCommand {
 	public String toString() {
 		return "ComplexCommand"+System.currentTimeMillis();
 	}
-
+	
+	public ICompoundCommand clone() throws CloneNotSupportedException{
+		ComplexCommand tmp = new ComplexCommand();
+		tmp.commands = new ArrayList<IPlotterCommand>();
+		for(IPlotterCommand ipc : this.commands){
+			tmp.commands.add(ipc);
+		}
+		return tmp;
+	}
 }

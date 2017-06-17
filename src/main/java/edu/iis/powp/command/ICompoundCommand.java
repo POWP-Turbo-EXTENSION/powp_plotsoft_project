@@ -9,5 +9,5 @@ import java.util.ListIterator;
 public interface ICompoundCommand extends IPlotterCommand {
 
 	public ListIterator<IPlotterCommand> iterator();
-	
+	public ICompoundCommand clone() throws CloneNotSupportedException;
 }

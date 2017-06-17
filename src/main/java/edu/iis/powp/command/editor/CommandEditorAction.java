@@ -45,7 +45,12 @@ public class CommandEditorAction implements ICommandEditorAction, Subscriber {
 	public void update() {
 		 // treeTestCommand();//
 		if(ICompoundCommand.class.isInstance(commandManager.getCurrentCommand())){
-			this.currentCommand = (ICompoundCommand) commandManager.getCurrentCommand();
+			try {
+				this.currentCommand = ((ComplexCommand) commandManager.getCurrentCommand()).clone();
+			} catch (CloneNotSupportedException e) {
+				e.printStackTrace();
+			}
+			//this.currentCommand = (ICompoundCommand) commandManager.getCurrentCommand();
 		}
 		rootNode = treeConfiguration.setRootTreeNode(this.currentCommand);
 		buildTree(currentCommand, rootNode);

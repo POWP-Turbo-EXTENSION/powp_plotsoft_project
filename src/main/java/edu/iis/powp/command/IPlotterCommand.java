@@ -6,7 +6,7 @@ import edu.iis.powp.command.visitor.Visitable;
 /**
  * PlotterCommand interface.
  */
-public interface IPlotterCommand {
+public interface IPlotterCommand extends Cloneable {
 
     /**
      * Execute command on plotter.

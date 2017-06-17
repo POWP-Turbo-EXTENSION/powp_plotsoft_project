@@ -39,27 +39,16 @@ public class PlotterCommandManager
      */
     public synchronized void setCurrentCommand(List<IPlotterCommand> commandList, String name)
     {
-    	setCurrentCommand(new ComplexCommand() {
-			
-    		List<IPlotterCommand> plotterCommands = commandList;
-    		
-			@Override
-			public void execute(IPlotter plotter) {
-				plotterCommands.forEach((c) -> c.execute(plotter));
-			}
-			
-			@Override
-			public ListIterator<IPlotterCommand> iterator() {
-				return plotterCommands.listIterator();
-			}
-			
+    	ComplexCommand newCommand  = new ComplexCommand() {
 			@Override
 			public String toString() {
 				return name;
 			}
-
-		});
-
+		};
+		for(IPlotterCommand ipc :commandList) {
+    		newCommand.addCommand(ipc);
+    	}
+		setCurrentCommand(newCommand);
     }
     
     /**
