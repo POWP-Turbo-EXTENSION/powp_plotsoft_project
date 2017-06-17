@@ -24,6 +24,7 @@ public class DeleteCommand implements Strategy{
 
 	@Override
 	public void execute() {
+		System.out.println("START");
 		if (lastPlotterCommand != null || lastCompoundCommand != null) {
 			// TODO: jesli trzeba skasowac glowna galaz to tutaj przed wejsciem
 			// do iteratora
@@ -37,13 +38,18 @@ public class DeleteCommand implements Strategy{
 					if (decision == 0) {
 						iterator.remove();
 					}
-				} else if (type.equals(lastCompoundCommand)) {
+				} 
+				else if (type.equals(lastCompoundCommand)) {
 					System.out.println("DUPAinna");
 					int decision = JOptionPane.showConfirmDialog(null, "ARE YOU SURE?", "REMOVE",
 							JOptionPane.OK_CANCEL_OPTION);
 					if (decision == 0) {
 						iterator.remove();
 					}
+					
+				} 
+				else if (ICompoundCommand.class.isInstance(type)) {
+					checkChildren((ICompoundCommand) type);
 				}
 			}
 		} else {
@@ -51,5 +57,29 @@ public class DeleteCommand implements Strategy{
 		}
 		
 	}
+	private void checkChildren(ICompoundCommand parent){
+		System.out.println("REC");
+		for (Iterator iterator = parent.iterator(); iterator.hasNext();) {
+			IPlotterCommand type = (IPlotterCommand) iterator.next();
 
+			if (type.equals(lastPlotterCommand)) {
+				System.out.println("DUPA");
+				int decision = JOptionPane.showConfirmDialog(null, "ARE YOU SURE?", "REMOVE",
+						JOptionPane.OK_CANCEL_OPTION);
+				if (decision == 0) {
+					iterator.remove();
+				}
+			} else if (type.equals(lastCompoundCommand)) {
+				System.out.println("DUPAinna");
+				int decision = JOptionPane.showConfirmDialog(null, "ARE YOU SURE?", "REMOVE",
+						JOptionPane.OK_CANCEL_OPTION);
+				if (decision == 0) {
+					iterator.remove();
+				}
+				
+			} else if (ICompoundCommand.class.isInstance(type)) {
+				checkChildren((ICompoundCommand) type);
+			}
+		}
+	}
 }

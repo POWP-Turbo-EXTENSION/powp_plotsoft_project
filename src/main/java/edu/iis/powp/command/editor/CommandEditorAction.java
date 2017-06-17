@@ -105,7 +105,11 @@ public class CommandEditorAction implements ICommandEditorAction, Subscriber {
 		SetPositionCommand spc3 = new SetPositionCommand(10, 10);
 		complexCommand3.addCommand(spc3);
 		DrawToCommand dtcmain = new DrawToCommand(200, 50);
+		DrawToCommand dtcmain2 = new DrawToCommand(300, 50);
+		DrawToCommand dtcmain3 = new DrawToCommand(400, 50);
 		complexCommand.addCommand(dtcmain);
+		complexCommand.addCommand(dtcmain2);
+		complexCommand.addCommand(dtcmain3);
 		ComplexCommand complexCommand4 = new ComplexCommand();
 		DrawToCommand dtc3 = new DrawToCommand(70, 20);
 		SetPositionCommand spc4 = new SetPositionCommand(50, 10);
