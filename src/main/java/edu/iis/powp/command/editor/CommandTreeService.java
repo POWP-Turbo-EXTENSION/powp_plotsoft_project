@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import edu.iis.powp.appext.FeaturesManager;
+import edu.iis.powp.command.ComplexCommand;
 import edu.iis.powp.command.ICompoundCommand;
 import edu.iis.powp.command.IEditablePlotterCommand;
 import edu.iis.powp.command.IPlotterCommand;
@@ -89,7 +90,12 @@ public class CommandTreeService implements ITreeBehaviour, IOperationsOnTree, Vi
 	public void update() {
 		if (ICompoundCommand.class.isInstance(commandManager.getCurrentCommand())) {
 			System.out.println("TU");
-			this.currentCommand = (ICompoundCommand) commandManager.getCurrentCommand();
+			try {
+				this.currentCommand = ((ComplexCommand) commandManager.getCurrentCommand()).clone();
+			} catch (CloneNotSupportedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			};
 			plotterCommandsList = new ArrayList<>();
 			currentCommand.iterator().forEachRemaining(plotterCommandsList::add);
 		}
