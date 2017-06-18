@@ -68,19 +68,21 @@ public class CommandTreeService implements ITreeBehaviour, IOperationsOnTree, Vi
 		if (lastPlotterCommand != null) {
 			if (IEditablePlotterCommand.class.isInstance(lastPlotterCommand)) {
 				EditEditableCommand editStrategy = new EditEditableCommand(
-						(IEditablePlotterCommand) lastPlotterCommand);
+						(IEditablePlotterCommand) lastPlotterCommand, currentCommand);
 				editStrategy.execute();
 			}
 
 		}
-
+		FeaturesManager.drawerController().clearPanel();
+		currentCommand.execute(FeaturesManager.getDriverManager().getCurrentPlotter());
 	}
 
 	@Override
 	public void removeSelectedCommand() {
 		DeleteCommand deleteStrategy = new DeleteCommand(lastPlotterCommand, currentCommand, lastCompoundCommand);
 		deleteStrategy.execute();
-
+		FeaturesManager.drawerController().clearPanel();
+		currentCommand.execute(FeaturesManager.getDriverManager().getCurrentPlotter());
 	}
 
 	@Override
@@ -91,7 +93,6 @@ public class CommandTreeService implements ITreeBehaviour, IOperationsOnTree, Vi
 	@Override
 	public void update() {
 		if (ICompoundCommand.class.isInstance(commandManager.getCurrentCommand())) {
-			System.out.println("TU");
 			try {
 				this.currentCommand = ((ComplexCommand) commandManager.getCurrentCommand()).clone();
 			} catch (CloneNotSupportedException e) {
