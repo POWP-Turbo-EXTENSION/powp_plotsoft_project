@@ -7,6 +7,7 @@ import edu.iis.powp.app.Application;
 import edu.iis.powp.app.DriverManager;
 import edu.iis.powp.appext.FeaturesManager;
 import edu.iis.powp.command.ComplexCommand;
+import edu.iis.powp.command.ComplexCommandSerializer;
 import edu.iis.powp.command.IPlotterCommand;
 import edu.iis.powp.command.manager.PlotterCommandManager;
 
@@ -26,7 +27,7 @@ public class LoadTestFigureOptionCommandListener implements ActionListener
 	@Override
     public void actionPerformed(ActionEvent e)
     {
-		command = new ComplexCommand(true);
+		command = ComplexCommandSerializer.load();
 		command.execute(app.getDriverManager().getCurrentPlotter());
 	    PlotterCommandManager manager = FeaturesManager.getPlotterCommandManager();
 	    manager.setCurrentCommand(command);

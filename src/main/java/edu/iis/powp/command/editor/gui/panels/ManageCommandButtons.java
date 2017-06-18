@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import edu.iis.powp.command.ComplexCommand;
+import edu.iis.powp.command.ComplexCommandSerializer;
 import edu.iis.powp.command.editor.EditedCommand;
 import edu.iis.powp.command.editor.ICommandEditorAction;
 
@@ -49,7 +50,7 @@ public class ManageCommandButtons extends JPanel implements ActionListener {
 		}
 		if (e.getSource().equals(saveComplexCommand)) {
 			ComplexCommand command = (ComplexCommand)EditedCommand.getInstance().getEditedCommand();
-			command.Save();
+			ComplexCommandSerializer.save(command);
 		}
 		if (e.getSource().equals(newPosition)) {
 			// TODO: NEW positionTo
