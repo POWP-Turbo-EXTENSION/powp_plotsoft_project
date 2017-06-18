@@ -53,6 +53,8 @@ public class SetPositionCommand implements IEditablePlotterCommand {
 		this.posY = y;
 		
 	}
-
+	public IPlotterCommand clone() throws CloneNotSupportedException{
+		return new SetPositionCommand(getX(),getY());
+	}
 
 }

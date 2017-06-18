@@ -1,5 +1,7 @@
 package edu.iis.powp.command;
 
+import java.util.ArrayList;
+
 import edu.iis.client.plottermagic.IPlotter;
 import edu.iis.powp.command.visitor.Visitor;
 
@@ -56,5 +58,7 @@ public class DrawToCommand implements IEditablePlotterCommand {
 		
 	}
 
-	
+	public IPlotterCommand clone() throws CloneNotSupportedException{
+		return new DrawToCommand(getX(),getY());
+	}
 }

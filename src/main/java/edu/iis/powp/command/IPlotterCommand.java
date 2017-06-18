@@ -14,4 +14,5 @@ public interface IPlotterCommand extends Cloneable {
      * @param plotter plotter.
      */
 	public void execute(IPlotter plotter);
+	public IPlotterCommand clone() throws CloneNotSupportedException;
 }
