@@ -25,6 +25,7 @@ public class CommandTree extends JPanel implements ITreeConfiguration, TreeSelec
 	private final DefaultTreeModel treeModel = new DefaultTreeModel(treeNode);
 	private ITreeBehaviour treeBehaviour;
 	private Object lastSelectedObject;
+
 	public CommandTree() {
 		super();
 		initUI();
@@ -93,6 +94,10 @@ public class CommandTree extends JPanel implements ITreeConfiguration, TreeSelec
 		parent.add(newChild);
 		tree.validate();
 		treeModel.reload();
+		for(int i=0;i<tree.getRowCount();i++)
+		{
+		    tree.expandRow(i);
+		}
 		return newChild;
 	}
 
@@ -102,7 +107,7 @@ public class CommandTree extends JPanel implements ITreeConfiguration, TreeSelec
 		if (node == null)
 			return;
 		Object nodeInfo = node.getUserObject();
-		
+
 		if (node.isLeaf()) {
 			if (treeBehaviour != null)
 				treeBehaviour.leafIsSelected(nodeInfo);
@@ -110,12 +115,11 @@ public class CommandTree extends JPanel implements ITreeConfiguration, TreeSelec
 			if (treeBehaviour != null)
 				treeBehaviour.dirIsSelected(nodeInfo);
 		}
-		
+
 	}
 
-	
 	@Override
-	public TreeModel getActualTreeModel(){		
+	public TreeModel getActualTreeModel() {
 		return tree.getModel();
 	}
 }
