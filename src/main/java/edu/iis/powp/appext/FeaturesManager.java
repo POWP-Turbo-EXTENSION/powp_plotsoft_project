@@ -2,6 +2,7 @@ package edu.iis.powp.appext;
 
 import edu.iis.powp.app.Application;
 import edu.iis.powp.app.DriverManager;
+import edu.iis.powp.command.editor.EditedCommand;
 import edu.iis.powp.command.manager.LoggerCommandChangeObserver;
 import edu.iis.powp.command.manager.PlotterCommandManager;
 import edu.iis.powp.events.predefine.SelectClearPanelOptionListener;
@@ -33,7 +34,7 @@ public class FeaturesManager {
 		commandManager = new PlotterCommandManager();
 
 		LoggerCommandChangeObserver loggerObserver = new LoggerCommandChangeObserver();
-		commandManager.getChangePublisher().addSubscriber(loggerObserver);
+		commandManager.getChangePublisher().addSubscriber(EditedCommand.getInstance());
 	}
 
 	/**
