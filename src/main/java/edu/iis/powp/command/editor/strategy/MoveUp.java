@@ -40,7 +40,6 @@ public class MoveUp implements Strategy{
 					iterator.next();
 					iterator.next();
 					iterator.set(temp1);
-					EditedCommand.getInstance().refresh();
 					break;
 				}	else if (ICompoundCommand.class.isInstance(type)) {
 					moveCommandUp((ICompoundCommand) type);

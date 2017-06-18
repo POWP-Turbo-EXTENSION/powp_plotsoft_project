@@ -5,4 +5,6 @@ public interface IOperationsOnTree {
 	public void removeSelectedCommand();
 	public void moveUp();
 	public void moveDown();
+	public void newPosition();
+	public void newLine();
 }

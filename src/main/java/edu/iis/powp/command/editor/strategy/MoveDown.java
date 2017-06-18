@@ -36,7 +36,6 @@ public class MoveDown implements Strategy {
 					iterator.previous();
 					iterator.previous();
 					iterator.set(temp1);
-					EditedCommand.getInstance().refresh();
 					break;
 				}	else if (ICompoundCommand.class.isInstance(type)) {
 					moveCommandDown((ICompoundCommand) type);

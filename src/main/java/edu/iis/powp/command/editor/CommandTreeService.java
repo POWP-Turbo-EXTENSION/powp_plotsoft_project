@@ -76,20 +76,17 @@ public class CommandTreeService implements ITreeBehaviour, IOperationsOnTree, Vi
 			}
 
 		}
-		FeaturesManager.drawerController().clearPanel();
-		currentCommand.execute(FeaturesManager.getDriverManager().getCurrentPlotter());
-		EditedCommand.getInstance().refresh();
+		reload();
+
 	}
 
 	@Override
 	public void removeSelectedCommand() {
 		DeleteCommand deleteStrategy = new DeleteCommand(lastPlotterCommand, currentCommand, lastCompoundCommand);
 		deleteStrategy.execute();
-		FeaturesManager.drawerController().clearPanel();
-		currentCommand.execute(FeaturesManager.getDriverManager().getCurrentPlotter());
-		EditedCommand.getInstance().refresh();
+		reload();
 	}
-
+	
 	@Override
 	public void visit(IEditablePlotterCommand cmd) {
 
@@ -104,12 +101,18 @@ public class CommandTreeService implements ITreeBehaviour, IOperationsOnTree, Vi
 		}
 
 	}
+	
+	public void reload(){
+		FeaturesManager.drawerController().clearPanel();
+		currentCommand.execute(FeaturesManager.getDriverManager().getCurrentPlotter());
+		EditedCommand.getInstance().refresh();
+	}
 
 	@Override
 	public void moveUp() {
 		Strategy moveUp = new MoveUp(lastPlotterCommand, currentCommand);
 		moveUp.execute();
-		
+		reload();
 		
 	}
 
@@ -117,5 +120,48 @@ public class CommandTreeService implements ITreeBehaviour, IOperationsOnTree, Vi
 	public void moveDown() {
 		Strategy moveDown = new MoveDown(lastPlotterCommand, currentCommand);
 		moveDown.execute();
+		reload();
 	}
+
+	@Override
+	public void newPosition() {
+		JTextField posX = new JTextField(5);
+		JTextField posY = new JTextField(5);
+		Object[] message = { "X:", posX, "Y:", posY };
+		posX.setText("0");
+		posY.setText("0");
+		int result = JOptionPane.showConfirmDialog(null, message, "Please Enter X and Y Values",
+				JOptionPane.OK_CANCEL_OPTION);
+		IPlotterCommand newCommand = new SetPositionCommand(Integer.parseInt(posX.getText()),Integer.parseInt(posY.getText()));
+		checkChildren(currentCommand, newCommand);
+		reload();
+	}
+
+	@Override
+	public void newLine() {
+		JTextField posX = new JTextField(5);
+		JTextField posY = new JTextField(5);
+		Object[] message = { "X:", posX, "Y:", posY };
+		posX.setText("0");
+		posY.setText("0");
+		int result = JOptionPane.showConfirmDialog(null, message, "Please Enter X and Y Values",
+				JOptionPane.OK_CANCEL_OPTION);
+		IPlotterCommand newCommand = new DrawToCommand(Integer.parseInt(posX.getText()),Integer.parseInt(posY.getText()));
+		checkChildren(currentCommand, newCommand);
+		reload();
+	}
+	
+	private void checkChildren(ICompoundCommand parent, IPlotterCommand newCommand){
+		for (Iterator iterator = parent.iterator(); iterator.hasNext();) {
+			IPlotterCommand type = (IPlotterCommand) iterator.next();
+			if (IEditablePlotterCommand.class.isInstance(type) && type.equals(lastPlotterCommand)) {
+					parent.iterator().add(newCommand);
+					break;
+			}  
+			else if (ICompoundCommand.class.isInstance(type)) {
+				checkChildren((ICompoundCommand) type, newCommand);
+			}
+		}
+	}
+
 }
