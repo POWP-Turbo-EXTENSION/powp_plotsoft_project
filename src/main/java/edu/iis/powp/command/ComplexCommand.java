@@ -104,7 +104,8 @@ public class ComplexCommand implements ICompoundCommand{
 			}
 		}else{
 			name = JOptionPane.showInputDialog("What name do you want to save this ComplexCommand as?");
-			Save(name);
+			if(name!=null)
+				Save(name);
 		}
 	}
 
