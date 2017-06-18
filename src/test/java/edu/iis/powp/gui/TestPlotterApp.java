@@ -13,6 +13,7 @@ import edu.iis.powp.appext.FeaturesManager;
 import edu.iis.powp.command.FigureFactory;
 import edu.iis.powp.command.editor.CommandEditorAction;
 import edu.iis.powp.command.editor.CommandTreeService;
+import edu.iis.powp.command.editor.EditedCommand;
 import edu.iis.powp.command.editor.gui.CommandEditorWindow;
 import edu.iis.powp.command.gui.CommandManagerWindow;
 import edu.iis.powp.command.gui.CommandManagerWindowCommandChangeObserver;
@@ -89,8 +90,10 @@ public class TestPlotterApp {
 
 		CommandManagerWindowCommandChangeObserver windowObserver = new CommandManagerWindowCommandChangeObserver(
 				commandManager);
-		FeaturesManager.getPlotterCommandManager().getChangePublisher().addSubscriber(treeService);
-		FeaturesManager.getPlotterCommandManager().getChangePublisher().addSubscriber(commandEditorAction);
+		EditedCommand.getInstance().getPublisher().addSubscriber(treeService);
+		EditedCommand.getInstance().getPublisher().addSubscriber(commandEditorAction);
+		//FeaturesManager.getPlotterCommandManager().getChangePublisher().addSubscriber(treeService);
+		//FeaturesManager.getPlotterCommandManager().getChangePublisher().addSubscriber(commandEditorAction);
 		FeaturesManager.getPlotterCommandManager().getChangePublisher().addSubscriber(windowObserver);
 		
 

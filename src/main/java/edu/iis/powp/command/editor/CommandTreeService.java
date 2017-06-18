@@ -75,6 +75,7 @@ public class CommandTreeService implements ITreeBehaviour, IOperationsOnTree, Vi
 		}
 		FeaturesManager.drawerController().clearPanel();
 		currentCommand.execute(FeaturesManager.getDriverManager().getCurrentPlotter());
+		EditedCommand.getInstance().Refresh();
 	}
 
 	@Override
@@ -83,6 +84,7 @@ public class CommandTreeService implements ITreeBehaviour, IOperationsOnTree, Vi
 		deleteStrategy.execute();
 		FeaturesManager.drawerController().clearPanel();
 		currentCommand.execute(FeaturesManager.getDriverManager().getCurrentPlotter());
+		EditedCommand.getInstance().Refresh();
 	}
 
 	@Override
