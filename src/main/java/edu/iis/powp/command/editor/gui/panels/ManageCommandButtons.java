@@ -8,6 +8,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import edu.iis.powp.command.ComplexCommand;
+import edu.iis.powp.command.editor.EditedCommand;
 import edu.iis.powp.command.editor.ICommandEditorAction;
 
 public class ManageCommandButtons extends JPanel implements ActionListener {
@@ -46,7 +48,8 @@ public class ManageCommandButtons extends JPanel implements ActionListener {
 			// TODO: NEW command
 		}
 		if (e.getSource().equals(saveComplexCommand)) {
-			// TODO: SAVE command
+			ComplexCommand command = (ComplexCommand)EditedCommand.getInstance().getEditedCommand();
+			command.Save();
 		}
 		if (e.getSource().equals(newPosition)) {
 			// TODO: NEW positionTo

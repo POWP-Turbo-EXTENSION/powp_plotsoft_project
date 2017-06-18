@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.ListIterator;
 
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 import edu.iis.client.plottermagic.IPlotter;
 import edu.iis.powp.command.visitor.Visitor;
@@ -77,6 +78,7 @@ public class ComplexCommand implements ICompoundCommand{
 
 	public void Save(String name) {
 		try {
+			this.name = name;
 			FileOutputStream fileOut = new FileOutputStream("./src/commands/" + name + ".ser");
 			ObjectOutputStream out = new ObjectOutputStream(fileOut);
 			out.writeObject(commands);
@@ -100,6 +102,9 @@ public class ComplexCommand implements ICompoundCommand{
 			} catch (IOException i) {
 				i.printStackTrace();
 			}
+		}else{
+			name = JOptionPane.showInputDialog("What name do you want to save this ComplexCommand as?");
+			Save(name);
 		}
 	}
 
