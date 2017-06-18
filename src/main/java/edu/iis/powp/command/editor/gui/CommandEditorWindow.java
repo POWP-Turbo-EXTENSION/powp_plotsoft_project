@@ -39,7 +39,7 @@ public class CommandEditorWindow extends JFrame implements WindowComponent {
 		super();		
 						
 		this.centralPane = new CommandTree();
-		this.buttonsSouth = new ManageCommandButtons(buttonsAction);
+		this.buttonsSouth = new ManageCommandButtons(buttonsAction, onTree);
 		this.buttonsNorth = new TreeManipulationButtons(onTree);
 		centralPane.setTreeBehaviour(behaviour);
 		buttonsAction.setTreeConfiguration(centralPane);
