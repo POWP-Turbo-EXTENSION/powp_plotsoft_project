@@ -75,6 +75,7 @@ public class CommandTreeService implements ITreeBehaviour, IOperationsOnTree, Vi
 		}
 		FeaturesManager.drawerController().clearPanel();
 		currentCommand.execute(FeaturesManager.getDriverManager().getCurrentPlotter());
+		EditedCommand.getInstance().Refresh();
 	}
 
 	@Override
@@ -83,6 +84,7 @@ public class CommandTreeService implements ITreeBehaviour, IOperationsOnTree, Vi
 		deleteStrategy.execute();
 		FeaturesManager.drawerController().clearPanel();
 		currentCommand.execute(FeaturesManager.getDriverManager().getCurrentPlotter());
+		EditedCommand.getInstance().Refresh();
 	}
 
 	@Override
@@ -93,12 +95,7 @@ public class CommandTreeService implements ITreeBehaviour, IOperationsOnTree, Vi
 	@Override
 	public void update() {
 		if (ICompoundCommand.class.isInstance(commandManager.getCurrentCommand())) {
-			try {
-				this.currentCommand = ((ComplexCommand) commandManager.getCurrentCommand()).clone();
-			} catch (CloneNotSupportedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			};
+			this.currentCommand = ((ComplexCommand) EditedCommand.getInstance().getEditedCommand());
 			plotterCommandsList = new ArrayList<>();
 			currentCommand.iterator().forEachRemaining(plotterCommandsList::add);
 		}
