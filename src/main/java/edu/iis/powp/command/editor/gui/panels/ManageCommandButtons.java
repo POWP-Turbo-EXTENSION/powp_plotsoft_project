@@ -8,6 +8,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import edu.iis.powp.command.ComplexCommand;
+import edu.iis.powp.command.ComplexCommandSerializer;
+import edu.iis.powp.command.editor.EditedCommand;
 import edu.iis.powp.command.editor.ICommandEditorAction;
 import edu.iis.powp.command.editor.IOperationsOnTree;
 
@@ -49,7 +52,8 @@ public class ManageCommandButtons extends JPanel implements ActionListener {
 			// TODO: NEW command
 		}
 		if (e.getSource().equals(saveComplexCommand)) {
-			// TODO: SAVE command
+			ComplexCommand command = (ComplexCommand)EditedCommand.getInstance().getEditedCommand();
+			ComplexCommandSerializer.save(command);
 		}
 		if (e.getSource().equals(newPosition)) {
 			buttonsAction2.newPosition();
