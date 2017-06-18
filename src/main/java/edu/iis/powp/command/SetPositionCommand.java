@@ -17,6 +17,7 @@ public class SetPositionCommand implements IEditablePlotterCommand {
 		this.posY = posY;
 	}
 
+
 	@Override
 	public void execute(IPlotter plotter) {
 		plotter.setPosition(posX, posY);

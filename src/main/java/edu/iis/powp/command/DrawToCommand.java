@@ -61,4 +61,5 @@ public class DrawToCommand implements IEditablePlotterCommand {
 	public IPlotterCommand clone() throws CloneNotSupportedException{
 		return new DrawToCommand(getX(),getY());
 	}
+
 }

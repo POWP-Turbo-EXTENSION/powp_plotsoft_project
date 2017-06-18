@@ -43,7 +43,7 @@ public class ComplexCommand implements ICompoundCommand {
 
 	@Override
 	public String toString() {
-		return "ComplexCommand"+System.currentTimeMillis();
+		return getClass().getSimpleName();
 	}
 	
 	public IPlotterCommand clone() throws CloneNotSupportedException{
@@ -54,4 +54,6 @@ public class ComplexCommand implements ICompoundCommand {
 		}
 		return tmp;
 	}
+
+	
 }

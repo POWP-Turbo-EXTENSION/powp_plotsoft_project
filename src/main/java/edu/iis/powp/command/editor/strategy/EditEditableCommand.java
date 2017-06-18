@@ -45,6 +45,7 @@ public class EditEditableCommand implements Strategy {
 					((IEditablePlotterCommand)type).setX(Integer.parseInt(posX.getText()));
 					((IEditablePlotterCommand)type).setY(Integer.parseInt(posY.getText()));
 				}
+				break;
 			}  
 			else if (ICompoundCommand.class.isInstance(type)) {
 				checkChildren((ICompoundCommand) type);

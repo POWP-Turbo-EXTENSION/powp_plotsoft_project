@@ -35,7 +35,7 @@ public class EditedCommand implements Subscriber {
 	public Publisher getPublisher(){
 		return editPublisher;
 	}
-	public void Refresh(){
+	public void refresh(){
 		EditedCommand.getInstance().editPublisher.notifyObservers();
 	}
 }

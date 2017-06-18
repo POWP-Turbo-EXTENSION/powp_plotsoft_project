@@ -37,12 +37,14 @@ public class DeleteCommand implements Strategy{
 						JOptionPane.OK_CANCEL_OPTION);
 				if (decision == 0) {
 					iterator.remove();
+					break;
 				}
 			} else if (type.equals(lastCompoundCommand)) {
 				int decision = JOptionPane.showConfirmDialog(null, "ARE YOU SURE?", "REMOVE",
 						JOptionPane.OK_CANCEL_OPTION);
 				if (decision == 0) {
 					iterator.remove();
+					break;
 				}
 				
 			} else if (ICompoundCommand.class.isInstance(type)) {

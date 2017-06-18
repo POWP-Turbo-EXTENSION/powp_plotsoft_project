@@ -33,6 +33,7 @@ public class TreeManipulationButtons extends JPanel implements ActionListener {
 		this.editIt.addActionListener(this);
 		this.deleteIt.addActionListener(this);
 		this.moveUp.addActionListener(this);
+		this.moveDown.addActionListener(this);
 	}
 
 	@Override
@@ -45,6 +46,9 @@ public class TreeManipulationButtons extends JPanel implements ActionListener {
 		}
 		if(e.getSource().equals(moveUp)){
 			buttonsAction.moveUp();
+		}
+		if(e.getSource().equals(moveDown)){
+			buttonsAction.moveDown();
 		}
 	}
 }
