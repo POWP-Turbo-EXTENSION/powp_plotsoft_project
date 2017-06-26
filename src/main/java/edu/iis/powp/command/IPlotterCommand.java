@@ -8,7 +8,7 @@ import edu.iis.powp.command.visitor.Visitable;
 /**
  * PlotterCommand interface.
  */
-public interface IPlotterCommand extends Cloneable, Serializable {
+public interface IPlotterCommand extends Cloneable, Serializable, Visitable {
 
     /**
      * Execute command on plotter.

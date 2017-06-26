@@ -45,4 +45,16 @@ public class MoveDown implements Strategy {
 		}
 	}
 
+    @Override
+    public void setCommandHead(ICompoundCommand head) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void setCurrentCommand(IPlotterCommand currentCommand) {
+        // TODO Auto-generated method stub
+        
+    }
+
 }

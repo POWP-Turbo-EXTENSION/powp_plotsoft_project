@@ -52,4 +52,14 @@ public class DeleteCommand implements Strategy{
 			}
 		}
 	}
+
+    @Override
+    public void setCommandHead(ICompoundCommand head) {
+        
+    }
+
+    @Override
+    public void setCurrentCommand(IPlotterCommand currentCommand) {
+        
+    }
 }

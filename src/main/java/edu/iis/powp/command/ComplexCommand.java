@@ -19,54 +19,58 @@ import javax.swing.JOptionPane;
 import edu.iis.client.plottermagic.IPlotter;
 import edu.iis.powp.command.visitor.Visitor;
 
-public class ComplexCommand implements ICompoundCommand{
+public class ComplexCommand implements ICompoundCommand {
 
-	List<IPlotterCommand> commands = new ArrayList<>();
-	public String name = null;
+    List<IPlotterCommand> commands = new ArrayList<>();
+    public String name = null;
 
-	public ComplexCommand() {
-		super();
-	}
+    public ComplexCommand() {
+        super();
+    }
 
-	@Override
-	public void execute(IPlotter plotter) {
-		for (Iterator iterator = commands.iterator(); iterator.hasNext();) {
-			IPlotterCommand iPlotterCommand = (IPlotterCommand) iterator.next();
-			iPlotterCommand.execute(plotter);
-		}
-	}
+    @Override
+    public void execute(IPlotter plotter) {
+        for (Iterator iterator = commands.iterator(); iterator.hasNext();) {
+            IPlotterCommand iPlotterCommand = (IPlotterCommand) iterator.next();
+            iPlotterCommand.execute(plotter);
+        }
+    }
 
-	@Override
-	public ListIterator<IPlotterCommand> iterator() {
-		return commands.listIterator();
-	}
+    @Override
+    public ListIterator<IPlotterCommand> iterator() {
+        return commands.listIterator();
+    }
 
-	public void addCommand(IPlotterCommand command) {
-		commands.add(command);
-	}
+    public void addCommand(IPlotterCommand command) {
+        commands.add(command);
+    }
 
-	public void removeCommand(IPlotterCommand command) {
-		commands.remove(command);
-	}
+    public void removeCommand(IPlotterCommand command) {
+        commands.remove(command);
+    }
 
-	public IPlotterCommand getCommand(int position) {
-		return commands.get(position);
-	}
+    public IPlotterCommand getCommand(int position) {
+        return commands.get(position);
+    }
 
-	@Override
-	public String toString() {
-		return getClass().getSimpleName();
+    @Override
+    public String toString() {
+        return getClass().getSimpleName();
 
-	}
-	
-	public IPlotterCommand clone() throws CloneNotSupportedException{
-		ComplexCommand tmp = new ComplexCommand();
-		tmp.commands = new ArrayList<IPlotterCommand>();
-		for(IPlotterCommand ipc : this.commands){
-			tmp.commands.add(ipc.clone());
-		}
-		return tmp;
-	}
+    }
 
-	
+    public IPlotterCommand clone() throws CloneNotSupportedException {
+        ComplexCommand tmp = new ComplexCommand();
+        tmp.commands = new ArrayList<IPlotterCommand>();
+        for (IPlotterCommand ipc : this.commands) {
+            tmp.commands.add(ipc.clone());
+        }
+        return tmp;
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
+
 }
