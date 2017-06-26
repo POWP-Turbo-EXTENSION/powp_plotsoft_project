@@ -25,7 +25,11 @@ import edu.iis.powp.command.editor.strategy.Strategy;
 import edu.iis.powp.command.manager.PlotterCommandManager;
 import edu.iis.powp.command.visitor.Visitor;
 import edu.iis.powp.observer.Subscriber;
-
+/*
+ * Pomyśleć nad template method do zapisu i odczytu z pliku! 
+ * http://stg-tud.github.io/eise/WS15-SE-18-Factory_Method_and_Abstract_Factory_Design_Pattern.pdf
+ * 
+ */
 public class CommandTreeService implements ITreeBehaviour, IOperationsOnTree, Subscriber {
 
     IPlotterCommand lastPlotterCommand;
